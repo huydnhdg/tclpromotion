@@ -1,0 +1,72 @@
+﻿@model PagedList.IPagedList<TCLPromotion.Models.Voucher3004>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    var index = 0;
+}
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form>
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        <input class="form-control" name="textSearch" value="@ViewBag.textSearch" placeholder="Keyword" />
+                    </div>
+
+                    <div class="col-md-2">
+                        @Html.DropDownList("status", new List<SelectListItem>{
+                                new SelectListItem { Value = "" , Text = "--trạng thái--" },
+                                new SelectListItem { Value = "0" , Text = "chưa active" },
+                                new SelectListItem { Value = "1" , Text = "đã active" },
+                   }, new { @class = "form-control" })
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i> Tìm kiếm</button>
+            </form>
+        </div>
+    </div>
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Mã voucher</th>
+                <th>Trạng thái</th>
+                <th>Ngày kích hoạt</th>
+                <th>SĐT kích hoạt</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                index++;
+                <tr>
+                    <td>@index</td>
+                    <td>@item.Code</td>
+                    <td>
+                        @if (item.Status == 1)
+                        {
+                            <span class="text-warning">đã kích hoạt</span>
+                        }
+                        else
+                        {
+                            <span class="text-primary">chưa kích hoạt</span>
+                        }
+                    </td>
+                    <td>
+                        @if (item.Activedate != null)
+                        {
+                            <span class="text-success">@item.Activedate</span>
+                        }
+                    </td>
+                    <td>@item.Phone</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+        <div class="showing">Showing @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</div>
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, textSearch = ViewBag.textSearch, from_date = ViewBag.from_date, to_date = ViewBag.to_date, chanel = ViewBag.chanel, status = ViewBag.status }))
+    </div>
+</div>
+

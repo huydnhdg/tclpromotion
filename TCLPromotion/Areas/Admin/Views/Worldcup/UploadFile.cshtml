@@ -1,0 +1,59 @@
+﻿@model List<TCLPromotion.Models.VOUCHER_API>
+@{
+    ViewBag.Title = "UploadFile";
+    var index = 0;
+}
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            @using (Html.BeginForm("UploadFile", "worldcup", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <input type="file" name="UploadedFile" class="form-control" />
+
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-upload" aria-hidden="true"></i> Upload Voucher</button>
+                    </div>
+                    <div class="col-md-2">
+                        <a class="btn btn-warning" href="~/Data/tcl_voucher.xlsx"><i class="fa fa-file-excel-o" aria-hidden="true"></i> File mẫu</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <table class="table table-hover table-striped" id="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Mã voucher</th>
+                <th>Ngày tạo</th>
+                <th>#</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                index++;
+                <tr>
+                    <td>@index</td>
+                    <td>@item.CODE</td>
+                    <td>@item.Createdate</td>
+                    <td>
+                        @if (item.ID == 0)
+                        {
+                            <span class="text-danger">chưa lưu được</span>
+                        }
+                        else
+                        {
+                            <span class="text-success">thành công</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

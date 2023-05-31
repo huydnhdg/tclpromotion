@@ -1,0 +1,314 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutSendVoucher.cshtml";
+    var index = 0;
+}
+
+<!--<div class="main">
+    <img src="~/Content/Voucher/tcl_home.jpg" class="img-responsive" id="img-pc" />
+    <img src="~/Content/Voucher/mobile_banner.jpg" class="img-responsive" id="img-mb" style="display:none" />
+    <div class="main-box">
+        <div class="padding-main">
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class=" col-md-6 text-center">
+                    <div class="form-main">
+                        <div class="form-content">
+                            <h2>ĐĂNG KÝ NGAY</h2>
+                            <form method="post" action="sendvoucher/send">
+                                <p>
+                                    Vui lòng nhập đủ thông tin dưới đây để nhận voucher mua sản phẩm TV QLED TCL tại các cửa hàng áp dụng
+                                </p>
+                                <div class="form-group">
+                                    <input class="form-control" id="Cusname" name="Cusname" placeholder="Họ và tên" />
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" id="Phone" name="Phone" placeholder="Số điện thoại" />
+                                </div>
+                                <select class="form-control" id="Model" name="Model">
+                                    <option>--Chọn Model--</option>
+                                    <option value="43Q636">43Q636</option>
+                                    <option value="50Q636">50Q636</option>
+                                    <option value="55Q636">55Q636</option>
+                                    <option value="65Q636">65Q636</option>
+                                    <option value="55C835">55C835</option>
+                                    <option value="65C835">65C835</option>
+                                </select>
+                                <div class="form-group">
+                                    <a title="" href="javascript:void(0)" onclick="Rules()">Chi tiết thể lệ chương trình</a><br />
+                                    <button type="button" id="btnsend" class="btn btn-success" onclick="SendForm()">NHẬN VOUCHER</button><br />
+                                    <img src="~/content/image/ajax-loader.gif" class="loader" id="loader" style="display:none;" /><br />
+                                    <p class="text-warning" id="txt-result"></p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+<!-- Modal -->
+<!--<div id="Rules" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="button">
+            <button type="button" class="close" data-dismiss="modal" data-backdrop="static" data-keyboard="false">&times;</button>
+        </div>
+        <div class="modal-content">
+            <div class="modal-body">
+                <p style="font-size: 21px; text-align:center"><b>THỂ LỆ CHƯƠNG TRÌNH</b></p>
+                <br />
+                <p><b>1. Tên chương trình: QLED MỚI CHÀO HÈ, SĂN SIÊU MÃ GIẢM</b></p>
+                <p><b>2. Thời gian:</b> từ 29/08/2022 đến 30/09/2022</p>
+                <p><b>3. Phạm vi:</b> Toàn quốc</p>
+                <p><b>4. Đối tượng áp dụng:</b> Khách hàng TCL cũ hoặc khách hàng mới có nhu cầu mua QLED TV</p>
+                <p><b>5. Model áp dụng:</b> Q636, C835 (từ 43 inch trở lên)</p>
+                <p><b>6. Hình thức:</b> Khách hàng đăng ký nhận voucher code giảm giá khi mua TV QLED TCL theo quy định</p>
+                <p><b>7. Địa điểm cửa hàng áp dụng code voucher:</b> Hệ thống siêu thị Điện Máy Xanh toàn quốc</p>
+                <p><b>8. Các bước tham gia:</b></p>
+                <p>
+                    <b>Bước 1:</b> Khách hàng truy cập vào web https://sieusaletcl.tcl.com/dmx đăng ký nhận code voucher.<br />
+                    <b>Bước 2:</b> Bấm NHẬN MÃ CODE VOUCHER<br />
+                    <b>Bước 3:</b> Mã code voucher được gửi đến số điện thoại khách đăng ký. Sau khi nhận được code, khách hàng đến các điểm mua hàng theo danh sách cửa hàng áp dụng code để mua TV QLED TCL, khách hàng sử dụng code voucher để được trừ trực tiếp trên hoá đơn mua sản phẩm.
+                </p>
+                <p><b>9. Giá trị voucher code: </b></p>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Model Áp Dụng</th>
+                            <th>Giá trị được giảm</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>43Q636</td>
+                            <td>1,000,000 VND</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>50Q636</td>
+                            <td>1,000,000 VND</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>55Q636</td>
+                            <td>2,000,000 VND</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>65Q636</td>
+                            <td>2,000,000 VND</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>55C835</td>
+                            <td>2,000,000 VND</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>
+                    <b>*Lưu ý:</b>
+                    <ul>
+                        <li>Mã code giảm được áp dụng trên giá khuyến mại cuối tại cửa hàng nằm trong hệ thống cửa hàng có áp dụng chương trình.</li>
+                        <li>Mã code giảm có hiệu lực trong vòng 7 ngày kể từ ngày nhận mã.</li>
+                    </ul>
+                </p>
+                <p><b>10. Những quy định khác:</b></p>
+                <ul>
+                    <li>Mã code voucher giảm giá không có giá trị quy đổi thành tiền mặt.</li>
+                    <li>Một số điện thoại được nhận tối đa 02 mã code voucher.</li>
+                    <li>Một mã code voucher chỉ được áp dụng mua 1 sản phẩm.</li>
+                </ul>
+                <p>Để được giải đáp các thắc mắc liên quan đến chương trình, khách hàng liên hệ bộ phận GTM của Công ty TNHH Điện Tử Thông Minh TCL (Việt Nam) theo số 028 3838 3922 (nhánh: 498) đề được hướng dẫn, giải đáp.</p>
+            </div>
+        </div>
+    </div>
+</div>-->
+<!-- Modal -->
+<!--<div id="Store" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="button">
+            <button type="button" class="close" data-dismiss="modal" data-backdrop="static" data-keyboard="false">&times;</button>
+        </div>
+        <div class="modal-content">
+            <div class="modal-body">
+                <p style="font-size: 21px; text-align:center"><b>DANH SÁCH CỬA HÀNG ÁP DỤNG</b></p>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Thành phố</th>
+                            <th>Tên cửa hàng</th>
+                            <th>Địa điểm</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.store)
+                        {
+                            index++;
+                            <tr>
+                                <td>@index</td>
+                                <td>@item.Province</td>
+                                <td>@item.Store</td>
+                                <td>@item.Address</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+
+    .main {
+        font-size: 16px;
+        color: white;
+        position: relative;
+    }
+
+    h2 {
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .main-box {
+        width: 100%;
+        position: absolute;
+        z-index: 999;
+        top: 0;
+        position: fixed;
+    }
+
+    .padding-main {
+        padding-left: 5%;
+        padding-right: 5%;
+        margin: auto;
+    }
+
+    .form-content {
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+
+    .form-main {
+        margin-top: 20%;
+    }
+
+    .form-content {
+        /*border: 1px solid gray;*/
+        border-radius: 20px;
+        padding: 50px 20px;
+        background-color: rgba(0,0,0,0.3);
+    }
+
+    form {
+        padding-top: 25px;
+    }
+
+    .modal-content {
+        border-radius: unset;
+        overflow-y: scroll;
+        height: 100vh;
+    }
+
+    .close {
+        color: #f67d7d;
+        opacity: 1;
+    }
+
+    @@media(min-width: 1200px) {
+    }
+
+    @@media(max-width: 1024px) {
+        #img-mb {
+            display: block !important;
+        }
+
+        #img-pc {
+            display: none !important;
+        }
+
+        .form-main {
+            margin-top: 200%;
+        }
+
+        .main-box {
+            position: absolute;
+        }
+
+        .main {
+            font-size: 13px;
+        }
+
+        h2 {
+            font-size: 18px;
+        }
+    }
+
+    @@media (min-width: 768px) {
+        .modal-dialog {
+            width: 840px;
+            margin: auto;
+        }
+    }
+</style>
+@section scripts{
+    <script>
+        function Rules() {
+                $('#Rules').modal('show');
+            }
+        function SendForm() {
+            $('#loader').css('display', 'inline-block');
+            var Cusname = $('#Cusname').val();
+            var Phone = $('#Phone').val();
+            var Model = $('#Model').val();
+            if (Cusname.length < 5) {
+                $('#txt-result').html("/* Yêu cầu nhập tên người nhận */");
+                $('#loader').css('display', 'none');
+            }
+            else if (Phone.length != 10) {
+                $('#txt-result').html("/* Số điện thoại chưa đúng */");
+                $('#loader').css('display', 'none');
+            }
+            else if (Model.length =="") {
+                $('#txt-result').html("/* Sản phẩm chưa đúng */");
+                $('#loader').css('display', 'none');
+            }
+            else {
+                $('#txt-result').html();
+
+                var formData = new FormData();
+                formData.append('Phone', Phone);
+                formData.append('Cusname', Cusname);
+                formData.append('Model', Model);
+                $.ajax({
+                    type: 'POST',
+                    url: '/DMX/Confirm',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (reponse) {
+                        console.log(reponse);
+                        if (reponse.Status == -1) {
+                            $('#txt-result').html("/* " + reponse.Message + " */");
+                            $('#loader').css('display', 'none');
+                        } else {
+                            $('#txt-result').html("/* " + reponse.Message + " */");
+                            $('#loader').css('display', 'none');
+                        }
+                    }
+                });
+            }
+        }
+        function Store() {
+            $('#Store').modal('show');
+        }
+    </script>
+}-->
+

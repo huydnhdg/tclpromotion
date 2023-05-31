@@ -1,0 +1,905 @@
+﻿@model IEnumerable<TCLPromotion.Models.Customer>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutHailoc.cshtml";
+    var index = 0;
+}
+<style>
+    body {
+        font-size: 15px;
+    }
+
+    .modal h3 {
+        color: unset;
+    }
+
+    #bao {
+        background-image: url(/Content/Winwheel/bgspin.png);
+        width: 600px;
+        height: 600px;
+        padding: 48px 38px 38px 38px;
+        background-size: contain;
+        margin: 0 auto;
+    }
+
+    table tr th, td {
+        text-align: center;
+    }
+
+    #tab3 tr th {
+        background-color: #d3d2d2;
+    }
+
+    .slice text {
+        font-weight: bold;
+    }
+
+    .title-invoice {
+        padding-top: 5px;
+    }
+
+    .tab-content {
+        padding-bottom: 50px;
+    }
+
+    #gameModal .modal-dialog {
+        background-image: url(/Content/Image/Cây-lộc-lì-xì-bgg.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    #Success {
+        /*left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;*/
+    }
+
+        #Success .modal-dialog {
+            background-image: url(/Content/Image/bg-ss.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            height: 500px;
+            width: 455px;
+            margin: 0 auto;
+        }
+
+        #Success .modal-content {
+            background-color: transparent;
+            height: 100%;
+        }
+
+        #Success .modal-content {
+            position: relative;
+            box-shadow: unset;
+            border: none;
+        }
+
+        #Success .modal-body {
+            position: absolute;
+            top: 40%;
+            width: 100%;
+        }
+
+            #Success .modal-body p {
+                font-size: 18px;
+                font-weight: bold;
+                color: white !important;
+                font-family: Tahoma;
+            }
+
+        #Success .button {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        #Success button {
+            float: unset;
+            color: red;
+        }
+
+    @@media(min-width:992px) {
+        #bao {
+            width: 600px;
+            height: 600px;
+            padding: 48px 0px 0px 38px;
+            margin: 0 auto;
+        }
+    }
+
+    @@media(max-width:576px) {
+        #bao {
+            width: 300px;
+            height: 300px;
+            padding: 25px 0px 0px 20px;
+            margin: 0 auto;
+        }
+
+        text {
+            font-size: 8px;
+            fill: white;
+            font-family: Tahoma;
+        }
+
+        .box {
+            max-width: 280px;
+        }
+
+        .modal {
+            top: 10%;
+        }
+
+        input, select, textarea {
+            max-width: 280px;
+        }
+
+        .title-invoice {
+            max-width: 280px;
+        }
+
+        #Success .modal-dialog {
+            margin: 0 auto;
+            width: 350px;
+        }
+
+        #Success .modal-body {
+            top: 35%;
+        }
+
+            #Success .modal-body p {
+                font-size: 14px;
+            }
+    }
+
+    .rung {
+        animation: code-pro-rung-lac 1s ease infinite;
+    }
+
+    @@-webkit-keyframes code-pro-rung-lac {
+        0% {
+            -webkit-transform: rotate(0) scale(1) skew(1deg);
+        }
+
+        10% {
+            -webkit-transform: rotate(-1deg) scale(1) skew(1deg);
+        }
+
+        20% {
+            -webkit-transform: rotate(1deg) scale(1) skew(1deg);
+        }
+
+        30% {
+            -webkit-transform: rotate(-1deg) scale(1) skew(1deg);
+        }
+
+        40% {
+            -webkit-transform: rotate(1deg) scale(1) skew(1deg);
+        }
+
+        50% {
+            -webkit-transform: rotate(0) scale(1) skew(1deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(0) scale(1) skew(1deg);
+        }
+    }
+</style>
+<a href="~/hai-loc">
+    <img src="~/Content/Image/banner-hai-loc.jpg" class="img-responsive" style="width: 100%"/>
+</a>
+<div class="container">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation">
+            <a href="#tab1" aria-controls="home" role="tab" data-toggle="tab">
+                <i class="fa fa-bookmark" aria-hidden="true"></i> KHÁCH HÀNG
+            </a>
+        </li>
+        <li role="presentation" class="active">
+            <a href="#tab2" aria-controls="profile" role="tab" data-toggle="tab">
+                <i class="fa fa-gift" aria-hidden="true"></i> ĐĂNG KÝ
+            </a>
+        </li>
+
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane" id="tab1">
+            <br />
+            <table class="table table-hover table-striped" style="font-size: 13px;">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Ngày tạo</th>
+                        <th>Số điện thoại</th>
+                        <th>Họ tên</th>
+                        <th>Số nhận thưởng</th>
+                        <th>QH khách hàng</th>
+                        <th>Giải thưởng</th>
+                        <th>Số IMEI/Số HĐ</th>
+                        <th>Model</th>
+                        <th>Size</th>
+                        <th>Hóa đơn</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.list)
+                    {
+                        index++;
+                        string[] words = null;
+                        if (!string.IsNullOrEmpty(item.INVOICE))
+                        {
+                            words = item.INVOICE.Split('|');
+                        }
+                        <tr>
+                            <td>@index</td>
+                            <td>@item.Createdate</td>
+                            <td>@item.Phone</td>
+                            <td>@item.Name</td>
+                            <td>@item.PhoneUse</td>
+                            <td>@item.ChangePeople</td>
+                            <td>
+                                @item.PAYMENT
+                            </td>
+                            <td>@item.IMEI</td>
+                            <td>@item.MODEL</td>
+                            <td>@item.SIZE</td>
+                            <td>
+                                @if (words != null)
+                                {
+                                    foreach (var img in words)
+                                    {
+                                        <img src="@img" width="100" />
+                                    }
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div role="tabpanel" class="tab-pane active" id="tab2">
+            <div class="text-center">
+                <h3>ĐĂNG KÝ THÔNG TIN</h3>
+                <p class="text-danger">(Thông tin đăng ký phải trùng khớp với thông tin trên hoá đơn mua hàng)</p>
+                <hr />
+                <form method="post" enctype="multipart/form-data" id="formpost">
+                    <input value="" class="form-control hidden" type="text" id="ID" name="ID" />
+                    <input value="@User.Identity.Name" class="form-control hidden" type="text" id="UserName" name="" />
+                    <input value="" class="form-control hidden" type="text" id="PAYMENT" name="PAYMENT" />
+                    <input value="" class="form-control hidden" type="text" id="Code" name="Code" />
+                    <input class="form-control" type="text" id="Name" name="Name" required placeholder="Họ và tên ..." />
+                    <input class="form-control" type="number" id="Phone" name="Phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required placeholder="Số điện thoại ..." />
+                    <input onchange="ChangePhone()" class="form-control" type="number" id="PhoneUse" name="PhoneUse" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required placeholder="Số đt nhận thưởng ..." />
+                    <input class="form-control hidden" type="text" id="ChangePeople" name="ChangePeople" required placeholder="Quan hệ với khách hàng" />
+                    <select class="form-control hidden" id="BuyAdr" name="BuyAdr" required>
+                        <option value="">--Nơi mua hàng--</option>
+                        <option value="Điện máy Chợ Lớn">Điện máy Chợ Lớn</option>
+                        <option value="Điện máy xanh">Điện máy xanh</option>
+                        <option value="Điện máy Nguyễn Kim">Điện máy Nguyễn Kim</option>
+                        <option value="Điện máy Pico">Điện máy Pico</option>
+                        <option value="Điện máy HC">Điện máy HC</option>
+                        <option value="Điện máy Media Mart">Điện máy Media Mart</option>
+                    </select>
+                    <select class="form-control hidden" id="Address" name="Address" required>
+                        <option value="">--Tỉnh/ Thành phố sinh sống--</option>
+                        <option value="An Giang">An Giang</option>
+                        <option value="Bà Rịa - Vũng Tàu">Bà Rịa - Vũng Tàu</option>
+                        <option value="Bắc Giang">Bắc Giang</option>
+                        <option value="Bắc Kạn">Bắc Kạn</option>
+                        <option value="Bạc Liêu">Bạc Liêu</option>
+                        <option value="Bắc Ninh">Bắc Ninh</option>
+                        <option value="Bến Tre">Bến Tre</option>
+                        <option value="Bình Định">Bình Định</option>
+                        <option value="Bình Dương">Bình Dương</option>
+                        <option value="Bình Phước">Bình Phước</option>
+                        <option value="Bình Thuận">Bình Thuận</option>
+                        <option value="Cà Mau">Cà Mau</option>
+                        <option value="Cần Thơ">Cần Thơ</option>
+                        <option value="Cao Bằng">Cao Bằng</option>
+                        <option value="Đà Nẵng">Đà Nẵng</option>
+                        <option value="Đắk Lắk">Đắk Lắk</option>
+                        <option value="Đắk Nông">Đắk Nông</option>
+                        <option value="Điện Biên">Điện Biên</option>
+                        <option value="Đồng Nai">Đồng Nai</option>
+                        <option value="Đồng Tháp">Đồng Tháp</option>
+                        <option value="Gia Lai">Gia Lai</option>
+                        <option value="Hà Giang">Hà Giang</option>
+                        <option value="Hà Nam">Hà Nam</option>
+                        <option value="Hà Nội">Hà Nội</option>
+                        <option value="Hà Tĩnh">Hà Tĩnh</option>
+                        <option value="Hải Dương">Hải Dương</option>
+                        <option value="Hải Phòng">Hải Phòng</option>
+                        <option value="Hậu Giang">Hậu Giang</option>
+                        <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                        <option value="Hòa Bình">Hòa Bình</option>
+                        <option value="Hưng Yên">Hưng Yên</option>
+                        <option value="Khánh Hòa">Khánh Hòa</option>
+                        <option value="Kiên Giang">Kiên Giang</option>
+                        <option value="Kon Tum">Kon Tum</option>
+                        <option value="Lai Châu">Lai Châu</option>
+                        <option value="Lâm Đồng">Lâm Đồng</option>
+                        <option value="Lạng Sơn">Lạng Sơn</option>
+                        <option value="Lào Cai">Lào Cai</option>
+                        <option value="Long An">Long An</option>
+                        <option value="Nam Định">Nam Định</option>
+                        <option value="Nghệ An">Nghệ An</option>
+                        <option value="Ninh Bình">Ninh Bình</option>
+                        <option value="Ninh Thuận">Ninh Thuận</option>
+                        <option value="Phú Thọ">Phú Thọ</option>
+                        <option value="Phú Yên">Phú Yên</option>
+                        <option value="Quảng Bình">Quảng Bình</option>
+                        <option value="Quảng Nam">Quảng Nam</option>
+                        <option value="Quảng Ngãi">Quảng Ngãi</option>
+                        <option value="Quảng Ninh">Quảng Ninh</option>
+                        <option value="Quảng Trị">Quảng Trị</option>
+                        <option value="Sóc Trăng">Sóc Trăng</option>
+                        <option value="Sơn La">Sơn La</option>
+                        <option value="Tây Ninh">Tây Ninh</option>
+                        <option value="Thái Bình">Thái Bình</option>
+                        <option value="Thái Nguyên">Thái Nguyên</option>
+                        <option value="Thanh Hóa">Thanh Hóa</option>
+                        <option value="Thừa Thiên Huế">Thừa Thiên Huế</option>
+                        <option value="Tiền Giang">Tiền Giang</option>
+                        <option value="Trà Vinh">Trà Vinh</option>
+                        <option value="Tuyên Quang">Tuyên Quang</option>
+                        <option value="Vĩnh Long">Vĩnh Long</option>
+                        <option value="Vĩnh Phúc">Vĩnh Phúc</option>
+                        <option value="Yên Bái">Yên Bái</option>
+                    </select>
+                    <select class="form-control" id="Size" name="Size" required onchange="ChangeSize()">
+                        <option value="">--Chọn kích thước--</option>
+                        <option value="50">50"</option>
+                        <option value="55">55"</option>
+                        <option value="65">65"</option>
+                        <option value="75">75"</option>
+                    </select>
+                    <select class="form-control" id="Model" name="Model" required>
+                        <option value="">--Chọn Model--</option>
+                    </select>
+                    <select class="form-control" id="spIMEI" name="spIMEI" required>
+                        <option value="">--Số IMEI/ Số HĐ--</option>
+                        <option value="1">Số IMEI</option>
+                        <option value="2">Số Hoá đơn</option>
+                    </select>
+                    <input class="form-control" type="text" id="IMEI" name="IMEI" required placeholder="Số IMEI/ Số HĐ" />
+                    <div class="box">
+                        <p class="col-md-3 title-invoice">Hóa đơn: </p>
+                        <div class="col-md-9">
+                            <input type="file" id="Invoice" name="Invoice" required multiple />
+                        </div>
+                    </div>
+                    <p class="text-danger" style="font-size:11px;">(Khách hàng upload hình ảnh hoá đơn mua sản phẩm)</p>
+                    <div class="text-center" style="margin-top:15px;">
+                        <button type="button" id="btnsendpost" class="btn btn-info"><i class="fa fa-check" aria-hidden="true"></i> GỬI THÔNG TIN</button>
+                        <img src="~/content/image/ajax-loader.gif" class="loader" id="loader" style="display:none;" />
+                        <p class="text-danger" id="lbErrPost"></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div id="gameModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" style="position:relative">
+        <button type="button" class="close" onclick="window.location.reload();" style="font-size:38px; font-weight:800;color:red; position:absolute; z-index: 999; right:0;">&times;</button>
+        @*<img id="cay-loc" onclick="Rungcay()" src="~/Content/Image/Cây-lộc-lì-xì-1366.png" class="img-responsive" />*@
+
+        <video poster="~/content/image/poster.jpg" webkit-playsinline="true" playsinline ="playsinline" preload="auto" id="videoId" style="width: 100%; position: absolute; top: 0" onclick="Rungcay()">
+            <source src="~/Content/Image/DEMO_ok_1.mp4" type="video/mp4">
+            <source src="~/Content/Image/DEMO_ok_1.webm" type="video/webm">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</div>
+<!-- Modal -->
+<div id="Success" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="button">
+            <button type="button" class="close" onclick="window.location.reload();" data-dismiss="modal" data-backdrop="static" data-keyboard="false">&times;</button>
+        </div>
+
+        <!-- Modal content-->
+        <div class="modal-content" onclick="window.location.reload();">
+            <div class="modal-body">
+                <p style="text-align:center; width: 45%; margin: auto" id="rsgiai"></p>
+            </div>
+            @*<div class="modal-footer">
+                    <button onclick="window.location.reload();" type="button" class="btn btn-success">QUAY TIẾP</button>
+                </div>*@
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            //$('#gameModal').modal('show');
+            //$('#Success').modal('show');
+        });
+        function Rungcay() {
+            $('#videoId').get(0).play();
+            //$("#cay-loc").addClass("rung");
+            setTimeout(function () {
+                //$("#cay-loc").removeClass("rung");
+                $('#Success').modal('show');
+
+                var payment = $('#PAYMENT').val();
+                if (payment == 1000) {
+                    $('#rsgiai').html('CHÚC MỪNG QUÝ KHÁCH NHẬN ĐƯỢC BAO LÌ XÌ 1,000,000 VNĐ TỪ TCL');
+                } else if (payment == 500) {
+                    $('#rsgiai').html('CHÚC MỪNG QUÝ KHÁCH NHẬN ĐƯỢC BAO LÌ XÌ 500,000 VNĐ TỪ TCL');
+                }
+                else if (payment == 300) {
+                    $('#rsgiai').html('CHÚC MỪNG QUÝ KHÁCH NHẬN ĐƯỢC BAO LÌ XÌ 300,000 VNĐ TỪ TCL');
+                } else if (payment == 200) {
+                    $('#rsgiai').html('CHÚC MỪNG QUÝ KHÁCH NHẬN ĐƯỢC BAO LÌ XÌ 200,000 VNĐ TỪ TCL');
+                }
+                else if (payment == 100) { 
+                    $('#rsgiai').html('CHÚC MỪNG QUÝ KHÁCH NHẬN ĐƯỢC BAO LÌ XÌ 100,000 VNĐ TỪ TCL');
+                }
+                else {
+                    $('#rsgiai').html('TCL CHÚC MỪNG NĂM MỚI');
+                }
+
+                if (payment != '') {
+                    var PhoneUse = $('#PhoneUse').val();
+                    var Code = $('#Code').val();
+                    var Payment = $('#PAYMENT').val();
+
+                    var formData = new FormData();
+
+                    formData.append('PhoneUse', PhoneUse);
+                    formData.append('Payment', Payment);
+                    formData.append('Code', Code);
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Hailoc/SendComplate',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function (reponse) {
+                            console.log(reponse);
+                            if (respone == -1) {
+                                alert("CHƯA GỬI ĐƯỢC BRANDNAME CHO KHÁCH HÀNG");
+                            }
+                        }
+                    });
+                }
+            }, 5000);
+        }
+        function ChangePhone() {
+            var phoneuse = $('#PhoneUse').val();
+            if (phoneuse == "" || phoneuse.length != 10) {
+                $('#loader').css('display', 'none');
+                $('#lbErrPost').html('SO DIEN THOAI CHUA DUNG');
+            } else {
+                $("#ChangePeople").removeClass("hidden");
+            }
+        }
+        function ChangeSize() {
+            $("#Model").html('');
+            var size = $('#Size').val();
+            if (size == 50) {
+                $("#Model").append(new Option("P725", "P725"));
+                $("#Model").append(new Option("C725", "C725"));
+                $("#Model").append(new Option("C726", "C726"));
+                $("#Model").append(new Option("Q726", "Q726"));
+            }
+            else if (size == 55) {
+                $("#Model").append(new Option("P725", "P725"));
+                $("#Model").append(new Option("C725", "C725"));
+                $("#Model").append(new Option("C726", "C726"));
+                $("#Model").append(new Option("Q726", "Q726"));
+                $("#Model").append(new Option("C728", "C728"));
+                $("#Model").append(new Option("C825", "C825"));
+            }
+            else if (size == 65) {
+                $("#Model").append(new Option("P725", "P725"));
+                $("#Model").append(new Option("C725", "C725"));
+                $("#Model").append(new Option("C726", "C726"));
+                $("#Model").append(new Option("Q726", "Q726"));
+                $("#Model").append(new Option("C728", "C728"));
+                $("#Model").append(new Option("C825", "C825"));
+
+            } else {
+                $("#Model").append(new Option("P725", "P725"));
+                $("#Model").append(new Option("C725", "C725"));
+            }
+        }
+        $('#btnsendpost').click(function () {
+            $('#loader').css('display', 'inline-block');
+            var fileUpload = $("#Invoice").get(0);
+            var files = fileUpload.files;
+
+            var Phone = $('#Phone').val();
+            var Name = $('#Name').val();
+            var Address = $('#Address').val();
+            var Size = $('#Size').val();
+            var Model = $('#Model').val();
+            var IMEI = $('#IMEI').val();
+            var User = $('#UserName').val();
+
+            var spIMEI = $('#spIMEI').val();
+
+            var PhoneUse = $('#PhoneUse').val();
+            var ChangePeople = $('#ChangePeople').val();
+
+
+            if (files.length == 0) {
+                $('#loader').css('display', 'none');
+                $('#lbErrPost').html('TAI LEN ANH HOA DON HOAC THONG TIN SAN PHAM');
+            }
+            else if (files.length > 3) {
+                $('#loader').css('display', 'none');
+                $('#lbErrPost').html('CHI CAN UPLOAD 3 ANH');
+            }
+            else if (Name == "") {
+                $('#loader').css('display', 'none');
+                $('#lbErrPost').html('CHUA NHAP HO TEN NGUOI MUA HANG');
+            }
+            else if (Phone == "" || Phone.length != 10) {
+                $('#loader').css('display', 'none');
+                $('#lbErrPost').html('CHUA NHAP SO DIEN THOAI');
+            }
+            //else if (Address == "") {
+            //    $('#loader').css('display', 'none');
+            //    $('#lbErrPost').html('CHUA NHAP THANH PHO');
+            //}
+            else if (spIMEI == "") {
+                $('#loader').css('display', 'none');
+                $('#lbErrPost').html('CHUA CHON SO HOA DON HOAC IMEI');
+            }
+            else if (IMEI == "") {
+                $('#loader').css('display', 'none');
+                $('#lbErrPost').html('CHUA NHAP SO HOA DON HOAC IMEI');
+            }
+            else if (spIMEI == 1 && IMEI.length != 19) {
+                $('#loader').css('display', 'none');
+                $('#lbErrPost').html('SO IMEI CHUA DUNG DINH DANG (19 KY TU)');
+            }
+            else if (Size == "") {
+                $('#loader').css('display', 'none');
+                $('#lbErrPost').html('CHUA NHAP SIZE TV DA MUA');
+            }
+            else if (Model == "") {
+                $('#loader').css('display', 'none');
+                $('#lbErrPost').html('CHUA NHAP MODEL TV DA MUA');
+            }
+            else if (User == "") {
+                $('#loader').css('display', 'none');
+                $('#lbErrPost').html('CHƯƠNG TRÌNH DÀNH RIÊNG CHO NHÂN VIÊN BÁN HÀNG');
+            }
+            else if (PhoneUse != "" && ChangePeople == "") {
+                $('#loader').css('display', 'none');
+                $('#lbErrPost').html('NHẬP THÔNG TIN NGƯỜI NHẬN THƯỞNG');
+            }
+            else {
+                var formData = new FormData();
+
+                // Looping over all files and add it to FormData object
+                for (var i = 0; i < files.length; i++) {
+                    console.log('(files[i].name:' + files[i].name);
+                    formData.append('Invoice', files[i]);
+                }
+
+                // You can update the jquery selector to use a css class if you want
+                formData.append('Phone', Phone);
+                formData.append('Name', Name);
+                formData.append('Address', Address);
+                formData.append('IMEI', IMEI);
+                formData.append('Size', Size);
+                formData.append('Model', Model);
+
+                formData.append('PhoneUse', PhoneUse);
+                formData.append('ChangePeople', ChangePeople);
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Hailoc/Post',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (reponse) {
+                        console.log(reponse);
+                        if (reponse == -1) {
+                            $('#loader').css('display', 'none');
+                            $('#lbErrPost').html('BAN DA HET LUOT THAM GIA CHUONG TRINH NAY');
+                        }
+                        else if (reponse == -2) {
+                            $('#loader').css('display', 'none');
+                            $('#lbErrPost').html('DA HET HAN THAM GIA CHUONG TRINH. CHI TIET XEM TAI: http://sieusaletcl.tcl.com');
+                        }
+                        else {
+                            $('#loader').css('display', 'none');
+                            $('#gameModal').modal('show');
+                            $('#PAYMENT').val(reponse);
+                        }
+                    }
+                });
+            }
+
+        });
+    </script>
+    <script src="~/Content/Winwheel/d3.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        var padding = { top: 0, right: 0, bottom: 0, left: 0 },
+            w = 505,
+            h = 505,
+            r = Math.min(w, h) / 2,
+            rotation = 0,
+            oldrotation = 0,
+            picked = 100000,
+            oldpick = [],
+            color = d3.scale.category20c();//category20c()
+        var width = Math.max(window.screen.width, window.innerWidth);
+        if (width < 576) {
+            w = 250;
+            h = 250;
+            r = Math.min(w, h) / 2;
+        }
+        var data = [
+
+            { "label": "GIẢI 200K", "value": 0 }, //font-family
+            { "label": "GIẢI 500K", "value": 1 }, //color
+            { "label": "GIẢI 700K", "value": 2 }, //font-weight
+            { "label": "GIẢI 200K", "value": 3 }, //font-size
+            { "label": "GIẢI 500K", "value": 4 }, //background-color
+            { "label": "GIẢI 1000K", "value": 5 }, //nesting
+            { "label": "GIẢI 200K", "value": 6 }, //sans-serif
+            { "label": "GIẢI 700K", "value": 7 }, //bottom
+
+        ];
+        var svg = d3.select('#chart')
+            .append("svg")
+            .data([data])
+            .attr("width", w + padding.left + padding.right)
+            .attr("height", h + padding.top + padding.bottom);
+
+        var container = svg.append("g")
+            .attr("class", "chartholder")
+            .attr("transform", "translate(" + (w / 2 + padding.left) + "," + (h / 2 + padding.top) + ")");
+        var vis = container
+            .append("g");
+
+        var pie = d3.layout.pie().sort(null).value(function (d) { return 1; });
+        // declare an arc generator function
+        var arc = d3.svg.arc().outerRadius(r);
+        // select paths, use arc generator to draw
+        var cl = function (c) {
+            var t = ["#429ed5", "#2cb075", "#faa62a", "#429ed5", "#2cb075", "#8e7cc3", "#429ed5", "#faa62a"]
+            return t[c];
+        }
+        var arcs = vis.selectAll("g.slice")
+            .data(pie)
+            .enter()
+            .append("g")
+            .attr("class", "slice");
+
+        arcs.append("path")
+            .attr("fill", function (d, i) {
+                return cl(i);
+            })
+            .attr("d", function (d) { return arc(d); });
+        // add the text
+        arcs.append("text").attr("transform", function (d) {
+            d.innerRadius = 0;
+            d.outerRadius = r;
+            d.angle = (d.startAngle + d.endAngle) / 2;
+            return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")translate(" + (d.outerRadius - 10) + ")";
+        })
+            .attr("text-anchor", "end")
+            .text(function (d, i) {
+                return data[i].label;
+            });
+
+        container.on("click", spin);
+        function spin(d) {
+
+            container.on("click", null);
+            //all slices have been seen, all done
+            if (oldpick.length == data.length) {
+                container.on("click", null);
+                return;
+            }
+
+
+            var ps = 360 / data.length,
+                pieslice = Math.round(1440 / data.length),
+                rd = Math.random(),
+                rng = Math.floor((rd * 1440) + 360);
+            rotation = (Math.round(rng / ps) * ps);
+            picked = Math.round(data.length - (rotation % 360) / ps);
+            picked = picked >= data.length ? (picked % data.length) : picked;
+            //fix rate to winning
+            //-----------------------------------------
+
+            //fix winning
+            //ví dụ nếu quay ra giải nhất check xem còn không
+            //nếu còn thì ok
+            //nếu không còn thì random lại để check lại
+            let index = -1;
+            let itemm = 1;
+            do {
+                index = Math.floor(Math.random() * 100);
+                console.log("index: " + index);
+            } while (itemm < 1);
+
+            var PAYMENT = $('#PAYMENT').val();
+            console.log("PAYMENT " + PAYMENT);
+            index = PAYMENT;
+            //-----------------------------------------
+            if (PAYMENT == 1000) {
+                picked = 5;
+                rng = 1558;
+                rotation = 1642;
+            }
+            else if (PAYMENT == 700) {
+                picked = 2;
+                rng = 1712;
+                rotation = 1777;
+            }
+            else if (PAYMENT == 500) {
+                picked = 1;
+                rng = 1242;
+                rotation = 1327;
+            } else {
+                picked = 0;
+                rng = 1461;
+                rotation = 1507;
+            }
+            //if (PAYMENT == 1) {
+            //    picked = 4;
+            //    rng = 1751;
+            //    rotation = 1822;
+            //}
+            //else if (PAYMENT == 2) {
+            //    picked = 7;
+            //    rng = 1480;
+            //    rotation = 1552;
+            //}
+            //else if (PAYMENT == 3) {
+            //    picked = 5;
+            //    rng = 1558;
+            //    rotation = 1642;
+            //}
+            //else if (PAYMENT == 4) {
+
+            //    picked = 2;
+            //    rng = 1712;
+            //    rotation = 1777;
+            //}
+            //else if (PAYMENT == 5) {
+            //    picked = 1;
+            //    rng = 1242;
+            //    rotation = 1327;
+            //}
+            //else if (PAYMENT == 6) {
+            //    picked = 3;
+            //    rng = 1548;
+            //    rotation = 1597;
+            //}
+            //else if (PAYMENT == 7) {
+
+            //    picked = 6;
+            //    rng = 1322;
+            //    rotation = 1372;
+            //}
+            //else if (PAYMENT == 8) {
+            //    picked = 0;
+            //    rng = 1461;
+            //    rotation = 1507;
+            //}
+
+            //rotation += 90 - Math.round(ps / 2);
+            console.log("rng " + rng);
+            console.log("rotation " + rotation);
+            console.log("picked " + picked);
+
+
+            vis.transition()
+                .duration(5000)
+                .attrTween("transform", rotTween)
+                .each("end", function () {
+                    addDatatoSql(data[picked].value);
+                });
+        }
+
+        if (width < 576) {
+            container.append("circle")
+                .attr("cx", 0)
+                .attr("cy", 0)
+                .attr("r", 30)
+                .style({ "fill": "white", "cursor": "pointer" });
+            container.append("text")
+                .attr("x", 0)
+                .attr("y", 10)
+                .attr("text-anchor", "middle")
+                .text("QUAY")
+                .style({ "font-weight": "bold", "font-size": "14px", "fill": "gray", "font-family": "Tahoma" });
+        }
+        else {
+            container.append("circle")
+                .attr("cx", 0)
+                .attr("cy", 0)
+                .attr("r", 60)
+                .style({ "fill": "white", "cursor": "pointer" });
+            container.append("text")
+                .attr("x", 0)
+                .attr("y", 15)
+                .attr("text-anchor", "middle")
+                .text("QUAY")
+                .style({ "font-weight": "bold", "font-size": "30px", "fill": "gray", "font-family": "Tahoma" });
+        }
+
+        function rotTween(to) {
+            var i = d3.interpolate(oldrotation % 360, rotation);
+            return function (t) {
+                return "rotate(" + i(t) + ")";
+            };
+        }
+        function getRandomNumbers() {
+            var array = new Uint16Array(1000);
+            var scale = d3.scale.linear().range([360, 1440]).domain([0, 100000]);
+            if (window.hasOwnProperty("crypto") && typeof window.crypto.getRandomValues === "function") {
+                window.crypto.getRandomValues(array);
+                console.log("works");
+            } else {
+                //no support for crypto, get crappy random numbers
+                for (var i = 0; i < 1000; i++) {
+                    array[i] = Math.floor(Math.random() * 100000) + 1;
+                }
+            }
+            return array;
+        }
+        function addDatatoSql(giai) {
+            //show giải thưởng đã trúng
+
+            var Phone = $('#Phone').val();
+            var Code = $('#Code').val();
+            var Payment = $('#PAYMENT').val();
+
+            if (Payment == 1000) {
+                $('#rsgiai').html('TCL CHÚC MỪNG QUÝ KHÁCH ĐÃ TRÚNG 1 THẺ NẠP ĐIỆN THOẠI MỆNH GIÁ 1.000.000 VNĐ TỪ CT "SẮM TCL 4K - RƯỚC LỘC VỀ NHÀ". LIÊN HỆ  028 3838 3922 (NHÁNH 498) ĐỂ ĐƯỢC HƯỚNG DẪN NHẬN THƯỞNG. CHI TIẾT XEM TẠI: http://sieusaletcl.tcl.com');
+            } else if (Payment == 700) {
+                $('#rsgiai').html('TCL CHÚC MỪNG QUÝ KHÁCH ĐÃ TRÚNG 1 THẺ NẠP ĐIỆN THOẠI MỆNH GIÁ 700.000 VNĐ TỪ CT "SẮM TCL 4K - RƯỚC LỘC VỀ NHÀ". LIÊN HỆ  028 3838 3922 (NHÁNH 498) ĐỂ ĐƯỢC HƯỚNG DẪN NHẬN THƯỞNG. CHI TIẾT XEM TẠI: http://sieusaletcl.tcl.com');
+            } else if (Payment == 500) {
+                $('#rsgiai').html('TCL CHÚC MỪNG QUÝ KHÁCH ĐÃ TRÚNG 1 THẺ NẠP ĐIỆN THOẠI MỆNH GIÁ 500.000 VNĐ TỪ CT "SẮM TCL 4K - RƯỚC LỘC VỀ NHÀ". LIÊN HỆ 028 3838 3922 (NHÁNH 498) ĐỂ ĐƯỢC HƯỚNG DẪN NHẬN THƯỞNG. CHI TIẾT XEM TẠI: http://sieusaletcl.tcl.com');
+            } else if (Payment == 200) {
+                $('#rsgiai').html('TCL CHÚC MỪNG QUÝ KHÁCH ĐÃ TRÚNG 1 THẺ NẠP ĐIỆN THOẠI MỆNH GIÁ 200.000 VNĐ TỪ CT "SẮM TCL 4K - RƯỚC LỘC VỀ NHÀ". LIÊN HỆ  028 3838 3922 (NHÁNH 498) ĐỂ ĐƯỢC HƯỚNG DẪN NHẬN THƯỞNG. CHI TIẾT XEM TẠI: http://sieusaletcl.tcl.com');
+            } else {
+                $('#rsgiai').html('THÔNG TIN ĐĂNG KÝ CỦA QUÝ KHÁCH CÒN THIẾU, VUI LÒNG KIỂM TRA LẠI. CHI TIẾT LH 028 3836 6111 (NHÁNH 498), website: http://sieusaletcl.tcl.com');
+            }
+
+            $('#Success').modal('show');
+
+            var formData = new FormData();
+
+            formData.append('Phone', Phone);
+            formData.append('Payment', Payment);
+            formData.append('Code', Code);
+
+            $.ajax({
+                type: 'POST',
+                url: '/Trian122/SendComplate',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (reponse) {
+                    console.log(reponse);
+                    if (respone == -1) {
+                        alert("CHƯA GỬI ĐƯỢC BRANDNAME CHO KHÁCH HÀNG");
+                    }
+                }
+            });
+
+        }
+    </script>
+}

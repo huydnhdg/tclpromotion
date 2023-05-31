@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Bluesea Media</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/Site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("TCLVN Promotion", "Index", "Home", new { area = "Admin" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (User.Identity.Name == "tranglt@bluesea.vn")
+                    {
+                        <li><a href="/admin/Codes">Mã TV</a></li>
+                        <li><a href="/admin/Infors">Khách hàng</a></li>
+                        <li><a href="/admin/worldcup">World Cup</a></li>
+                        <li><a href="/admin/voucherapi23">Voucher 23</a></li>
+                        <li><a href="/admin/voucherapi">Voucher</a></li>
+                        <li><a href="/admin/keystore">Cửa hàng</a></li>
+                        <li><a href="/admin/User">Tài khoản</a></li>
+                    }
+                    else if (User.Identity.Name == "nhanvientcl") 
+                    {
+                <li><a href="/admin/Infors">Khách hàng</a></li>
+            }
+                    else
+                    {
+                        <li><a href="/admin/code">Mã TV</a></li>
+                        <li><a href="/admin/infor">Khách hàng</a></li>
+                        <li><a href="/admin/worldcup">World Cup</a></li>
+                        <li><a href="/admin/voucherapi23">Voucher 23</a></li>
+                        <li><a href="/admin/voucherapi">Voucher</a></li>
+                        <li><a href="/admin/keystore">Cửa hàng</a></li>
+
+                    }
+
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Bluesea Media</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,109 @@
+﻿@model PagedList.IPagedList<TCLPromotion.Models.Voucher>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    var index = 0;
+}
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form>
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        <input class="form-control" name="textSearch" value="@ViewBag.textSearch" placeholder="Keyword" />
+                    </div>
+                    <div class="col-md-2">
+                        @Html.TextBox("from_date", ViewBag.from_date as string, new { @class = "form-control", @type = "date" })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.TextBox("to_date", ViewBag.to_date as string, new { @class = "form-control", @type = "date" })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.DropDownList("status", new List<SelectListItem>{
+                                new SelectListItem { Value = "" , Text = "--trạng thái--" },
+                                new SelectListItem { Value = "0" , Text = "chưa active" },
+                                new SelectListItem { Value = "1" , Text = "đã gửi" },
+                                new SelectListItem { Value = "2" , Text = "đã sử dụng" },
+                                new SelectListItem { Value = "3" , Text = "quá hạn" },
+                   }, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.DropDownList("chanel", new SelectList(ViewBag.agent, "UserName", "UserName"), "--đại lý--", new { @class = "form-control" })
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit"> Tìm kiếm</button>
+                <a href="/admin/voucher/TCL_VOUCHER" class="btn btn-success"><i class="fa fa-file-excel-o"></i> Xuất file</a>
+            </form>
+        </div>
+    </div>
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Ngày tạo</th>
+                <th>Mã voucher</th>
+                <th>Trạng thái</th>
+                <th>Ngày kích hoạt</th>
+                <th>Gửi đến</th>
+                <th>Ngày SD</th>
+                <th>Khách hàng</th>
+                <th>Sản phẩm</th>
+                <th>Đại lý</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                index++;
+                <tr>
+                    <td>@index</td>
+                    <td>@item.Createdate.Value.ToString("dd/MM/yyyy")</td>
+                    <td>@item.CODE</td>
+                    <td>
+                        @if (item.Status == 1)
+                        {
+                            <span class="text-warning">đã gửi</span>
+                        }
+                        else if (item.Status == 2)
+                        {
+                            <span class="text-success">Đã sử dụng</span>
+                        }
+                        else if (item.Status == 3)
+                        {
+                            <span class="text-danger">Quá hạn sử dụng</span>
+                        }
+                    </td>
+                    <td>
+                        @if (item.Activedate != null)
+                        {
+                            <span class="text-success">@item.Activedate</span>
+                        }
+                    </td>
+                    <td>@item.Activeby</td>
+                    <td>
+                        @if (item.Usedate != null)
+                        {
+                            <span class="text-success">@item.Usedate</span>
+                        }
+                    </td>
+                    <td>
+                        @item.Usephone<br />
+                        @item.Cusname<br />
+                        @item.CCCD
+                    </td>
+                    <td>
+                        @item.MODEL<br />
+                        @item.SIZE
+                    </td>
+                    <td>@item.Agent</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+        <div class="showing">Showing @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</div>
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, textSearch = ViewBag.textSearch, from_date = ViewBag.from_date, to_date = ViewBag.to_date, chanel = ViewBag.chanel, status = ViewBag.status }))
+    </div>
+</div>
+

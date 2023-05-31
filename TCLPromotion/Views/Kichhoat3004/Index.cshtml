@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center">
+    <h3>KIỂM TRA MÃ</h3>
+    <p class="text-danger">(Nhập mã voucher cần kiểm tra)</p>
+    <hr />
+    <form method="post" enctype="multipart/form-data" id="formpost">
+        <input value="" class="form-control" type="text" id="Code" name="Code" placeholder="Mã voucher" />
+        <input value="@User.Identity.Name" class="form-control hidden" type="text" id="Agent" name="Agent" />
+
+        <div class="text-center" style="margin-top:15px;">
+            <button type="button" id="btnsendpost" class="btn btn-info">
+                <i class="fa fa-check" aria-hidden="true"></i> KIỂM TRA
+            </button>
+            <img src="~/content/image/ajax-loader.gif" class="loader" id="loader" style="display:none;" />
+            <p class="text-danger" id="lbErrPost"></p>
+        </div>
+    </form>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            
+        });
+        $('#btnsendpost').click(function () {
+            $('#loader').css('display', 'inline-block');
+            var Code = $('#Code').val();
+            var Agent = $('#Agent').val();
+            if (Code == "") {
+                $('#loader').css('display', 'none');
+                $('#lbErrPost').html('CHUA NHAP MA DE KIEM TRA');
+                
+            }
+            else if (Agent == "") {
+                $('#loader').css('display', 'none');
+                $('#lbErrPost').html('PHAI DANG NHAP DE THAM GIA CHUONG TRINH');
+            }
+            else {
+
+                var formData = new FormData();
+                formData.append('Code', Code);
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/kichhoat3004/Post',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (reponse) {
+                        console.log(reponse);
+                        if (reponse == -1) {
+                            $('#loader').css('display', 'none');
+                            $('#lbErrPost').html('MA VOUCHER KHONG TON TAI');
+                        } else if (reponse == 1) {
+                            $('#loader').css('display', 'none');
+                            $('#lbErrPost').html('MA VOUCHER DA DUOC SU DUNG');
+                        }
+                        else {
+                            window.location.href = '/kich-hoat-30-04/kich-hoat?code=' + Code;
+                            //thanh cong thi redirect luon sang trang nhap thong tin
+                        }
+                    }
+                });
+            }
+
+        });
+    </script>
+}

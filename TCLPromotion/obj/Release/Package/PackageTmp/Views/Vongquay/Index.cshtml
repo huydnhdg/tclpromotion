@@ -1,0 +1,822 @@
+﻿@model IEnumerable<TCLPromotion.Models.Customer>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutVongQuay.cshtml";
+    var index = 0;
+}
+<style>
+    body {
+        font-size: 15px;
+    }
+
+    .modal h3 {
+        color: unset;
+    }
+
+    #bao {
+        background-image: url(/Content/Winwheel/bgspin.png);
+        width: 600px;
+        height: 600px;
+        padding: 48px 38px 38px 38px;
+        background-size: contain;
+        margin: 0 auto;
+    }
+
+    table tr th, td {
+        text-align: center;
+    }
+
+    #tab3 tr th {
+        background-color: #d3d2d2;
+    }
+
+    .slice text {
+        font-weight: bold;
+    }
+
+    .title-invoice {
+        padding-top: 5px;
+    }
+
+    .tab-content {
+        padding-bottom: 50px;
+    }
+
+    @@media(min-width:992px) {
+        #bao {
+            width: 600px;
+            height: 600px;
+            padding: 48px 0px 0px 38px;
+            margin: 0 auto;
+        }
+    }
+
+    @@media(max-width:576px) {
+        #bao {
+            width: 300px;
+            height: 300px;
+            padding: 25px 0px 0px 20px;
+            margin: 0 auto;
+        }
+
+        text {
+            font-size: 8px;
+            fill: white;
+            font-family: Tahoma;
+        }
+
+        .box {
+            max-width: 280px;
+        }
+
+        .modal {
+            top: 20%;
+        }
+
+        input, select, textarea {
+            max-width: 280px;
+        }
+
+        .title-invoice {
+            max-width: 280px;
+        }
+    }
+</style>
+<a href="~/">
+    @*<img src="~/Content/Image/banner_1_1.jpg" class="img-responsive" />*@
+</a>
+<div class="container">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation">
+            <a href="#tab1" aria-controls="home" role="tab" data-toggle="tab">
+                <i class="fa fa-bookmark" aria-hidden="true"></i> THỂ LỆ
+            </a>
+        </li>
+        <li role="presentation" class="active">
+            <a href="#tab2" aria-controls="profile" role="tab" data-toggle="tab">
+                <i class="fa fa-gift" aria-hidden="true"></i> ĐĂNG KÝ
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#tab3" aria-controls="profile" role="tab" data-toggle="tab">
+                <i class="fa fa-users" aria-hidden="true"></i> TRÚNG THƯỞNG
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#tab4" aria-controls="profile" role="tab" data-toggle="tab">
+                <i class="fa fa-users" aria-hidden="true"></i> HƯỚNG DẪN BHDT
+            </a>
+        </li>
+
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane" id="tab1">
+            <br />
+            <h3 class="text-center">THỂ LỆ CHƯƠNG TRÌNH KHUYẾN MÃI</h3>
+            @*<p style="text-align:center;"><i>(Kèm theo công văn số 131221/DKKM ngày 13/12/2021 của Công ty TNHH Điện Tử Thông Minh TCL (Việt Nam))</i></p>*@
+            <hr style="width:100px; border-top: 1px solid #000;" />
+            <p>
+                <b>1.</b> Tên chương trình khuyến mãi: "CƠ HỘI SỞ HỮU QLED 0 ĐỒNG"
+            </p>
+            <p>
+                <b>2.</b> Hàng hóa, dịch vụ khuyến mại: P725, C725, C726, Q726, C728, C825 (từ 55” trở lên)
+            </p>
+            <p>
+                <b>3.</b> Thời gian khuyến mại: 05/01/2022 đến 31/01/2022
+            </p>
+            <p>
+                <b>4.</b> Địa bàn (phạm vi) khuyến mại: Siêu Thị Điện Máy Chợ Lớn, Siêu Thị Điện Máy Nguyễn Kim, Siêu Thị Điện Máy Pico, Siêu Thị Điện Máy Điện Máy Xanh, Siêu Thị Điện Máy VHC, Siêu Thị Điện Máy Media Mart trên toàn quốc
+            </p>
+            <p>
+                <b>5.</b> Hình thức khuyến mại: Nhắn tin xác định trúng thưởng
+            </p>
+            <p>
+                <b>6.</b> Khách hàng của chương trình khuyến mại (đối tượng hưởng khuyến mại): Khách hàng mua sản phẩm khuyến mại theo quy định. Chương trình không áp dụng cho các nhân viên của Công ty TNHH Điện Tử Thông Minh TCL (Việt Nam) và Siêu thị.
+            </p>
+            <p>
+                <b>7. Cơ cấu giải thưởng:</b>
+            </p>
+            <table class="table table-bordered">
+                <tr>
+                    <th>Cơ cấu giải thưởng</th>
+                    <th>Nội dung giải thưởng <br />(chi tiết nội dung và mã ký hiệu từng giải thưởng)</th>
+                    <th>Trị giá giải thưởng<br />(VND)</th>
+                    <th>Số giải</th>
+                    <th>Thành tiền<br />(VND)</th>
+                </tr>
+                <tr>
+                    <td>Giải nhất</td>
+                    <td>Hoàn tiền 100% giá trị dựa trên hóa đơn mua hàng<br />(Hoàn tiền tối đa: 20,000,000)</td>
+                    <td>20,000,000</td>
+                    <td>20</td>
+                    <td>400,000,000</td>
+                </tr>
+                <tr>
+                    <td>Giải nhì</td>
+                    <td>Hoàn tiền 30% giá trị dựa trên hoá đơn mua hàng<br />(Hoàn tiền tối đa: 6,000,000)</td>
+                    <td>6,000,000</td>
+                    <td>100</td>
+                    <td>600,000,000</td>
+                </tr>
+            </table>
+            @*<p>
+                    - Tổng giá trị giải thưởng khuyến mại: 1,000,000,000 VNĐ (bằng chữ: Một tỷ đồng chẵn)<br />
+                    - Tổng giá trị giải thưởng so với tổng giá trị hàng hóa khuyến mại: 1.2%<br />
+                    - Khách hàng tham dự đăng ký nhắn tin xác nhận trúng thưởng sẽ nhận kết quả trúng thưởng sau khi mua hàng và đăng ký tham gia thành công.<br />
+
+                </p>*@
+            <p><b>8. Nội dung chi tiết thể lệ chương trình khuyến mại:</b></p>
+            <p><b>8.1. Cách thức tham dự chương trình khuyến mại:</b></p>
+            <p>
+                - Trong thời gian khuyến mại, khách hàng khi mua bất kỳ 01 sản phẩm theo quy định sẽ nhận được 01 số IMEI tham gia chương trình được in trên sản phẩm khuyến mãi.<br />
+                - Khách hàng sẽ nhận được số lượng số IMEI tương ứng với số sản phẩm khuyến mãi đã mua.<br />
+                - Khách hàng tìm dãy số IMEI của sản phẩm ở mặt sau tivi trên phiếu bảo hành hoặc trên thùng sản phẩm. Mỗi sản phẩm chỉ có 01 số IMEI duy nhất, không trùng lặp. Khách hàng vào trang <a href="http://khuyenmaitcl.tcl.com">http://khuyenmaitcl.tcl.com</a> đăng ký tham gia chương trình bằng cách cung cấp các thông tin: họ tên, nơi mua hàng, địa chỉ, số điện thoại, số IMEI sản phẩm, hình ảnh hoá đơn, sau khi gửi tin thành công sẽ nhận được mã dự thưởng kèm kết quả trúng thưởng.<br />
+                - Thời hạn trang <a href="http://khuyenmaitcl.tcl.com">http://khuyenmaitcl.tcl.com</a> mở để nhận thông tin đăng ký tham gia chương trình và kết thúc trả mã dự thưởng kèm kết quả trúng thưởng cho khách hàng từ 0h00 ngày 05/01/2022 đến 0h00 ngày 02/02/2022
+            </p>
+            <p><b>8.2. Quy định về bằng chứng xác định trúng thưởng:</b></p>
+            <p>
+                -	Số mã dự thưởng là 1 dãy số gồm 06 chữ số được hệ thống tự động quay ngẫu nhiên để xác định trúng thưởng cho khách hàng sau khi khách hàng đăng ký thành công.<br />
+                -	Trang <a href="http://khuyenmaitcl.tcl.com">http://khuyenmaitcl.tcl.com</a> sẽ gửi trả mã dự thưởng cùng kết quả trúng thưởng cho khách hàng sau khi khách hàng hoàn tất việc đăng ký tham gia chương trình khuyến mại theo quy định.<br />
+
+            </p>
+
+            <p><b>8.3. Thông báo trúng thưởng:</b></p>
+            <p>
+                - Sau khi xác định được khách hàng trúng thưởng, danh sách khách hàng trúng thưởng và mã dự thưởng trúng thưởng sẽ được cập nhật lên trang <a href="http://khuyenmaitcl.tcl.com">http://khuyenmaitcl.tcl.com</a> vào 17 giờ mỗi ngày.<br />
+                - Trong vòng 10-15 ngày sau khi xác định và kiểm tra hồ sơ đăng ký của khách hàng trúng thưởng, Công ty TNHH Điện Tử Thông Minh TCL (Việt Nam) sẽ thực hiện nhắn tin và gọi điện trực tiếp để thông báo trúng thưởng, thời gian, địa điểm, thủ tục nhận thưởng cho khách hàng trúng thưởng.
+            </p>
+            <p>
+                <b>8.4. Thời gian địa điểm, cách thức và thủ tục trao thưởng</b>
+            </p>
+            <p>
+                - Khách hàng trúng thưởng sẽ nhận thưởng tại:<br />
+                - Miền Nam: Chi nhánh Công ty TNHH Điện Tử Thông Minh TCL (Việt Nam) Tầng 5, Toà Nhà Lotte, 77 Trần Nhân Tôn, Phường 9, Quận 5, TP. HCM<br />
+                - Miền Trung: Chi nhánh Công ty TNHH Điện Tử Thông Minh TCL (Việt Nam) 59 Ngô Gia Tự, Quận Hải Châu, TP. Đà Nẵng<br />
+                - Miền Bắc: Chi nhánh Công ty TNHH Điện Tử Thông Minh TCL (Việt Nam) Tầng 6 số 168 Nguyễn Xiển, Quận Thanh Xuân, TP. Hà Nội và Phòng 503, Tòa nhà Lê Phạm, 98-100 Tô Hiệu, Phường Trại Cau, Quận Lê Chân, TP.Hải Phòng<br />
+                - Trường hợp khách hàng không thể nhận thưởng tại địa điểm đã thông báo, khách hàng có thể uỷ quyền cho người khác đến nhận thưởng hoặc Công ty TNHH Điện Tử Thông Minh TCL (Việt Nam) sẽ chuyển giải thưởng thông qua tài khoản ngân hàng cho khách hàng (chi phí chuyển khoản sẽ do khách hàng thanh toán, phí chuyển khoản sẽ được thông báo cho khách hàng tại thời điểm khách hàng thông báo không thể nhận thưởng tại điểm nhận thưởng theo quy định).<br />
+                - Đối với khách hàng nhờ Công ty TNHH Điện Tử Thông Minh TCL (Việt Nam) chuyển giải thưởng qua tài khoản ngân hàng, khách hàng phải gửi mail thông tin tài khoản và các chứng từ nhận giải cho Công ty TNHH Điện Tử Thông Minh TCL (Việt Nam) vào hộp thư TCL ngan.langngockim@tclvn.com.vn để xác nhận thông tin tài khoản nhận thưởng. Thời gian Công ty TNHH Điện Tử Thông Minh TCL (Việt Nam) nhận mail xác nhận của khách hàng để thực hiện chuyển khoản từ ngày 07/02/2022 đến 17h ngày 28/02/2022. Sau khi nhận được mail xác nhận thông tin tài khoản nhận giải thưởng của khách hàng, Công ty
+                TNHH Điện Tử Thông Minh TCL (Việt Nam) sẽ chuyển giải thưởng đến khách hàng xác nhận qua mail, phí chuyển tiền sẽ được thông báo cho khách hàng trong vòng 2 ngày khi khách hàng gửi mail xác nhận, sau khi khách hàng đồng ý chi phí chuyển tiền, trong vòng 7 ngày làm việc khách hàng sẽ nhận được giải thưởng. Công ty TNHH Điện Tử Thông Minh TCL (Việt Nam) sẽ không chịu trách nhiệm đối với giải thưởng bị thất thoát do khách hàng xác nhận qua mail ghi thiếu thông tin hoặc sai thông tin.<br />
+                - Khi nhận thưởng, người tiêu dùng phải xuất trình: hộ khẩu, giấy CMND/CCCD (công chứng); hoá đơn VAT mua sản phẩm khuyến mại trong thời gian chương trình; tin nhắn thông báo trúng thưởng từ Brand Name TCL VN, thông tin kích hoạt bảo hành điện tử trên sản phẩm; giấy uỷ quyền nhận thưởng (nếu có).<br />
+                (Trường hợp người tiêu dùng không cung cấp đủ hồ sơ theo yêu cầu, xem như người tiêu dùng không đủ điều kiện để nhận thưởng)<br />
+
+                - Khách hàng trúng thưởng phải chịu phí đi lại, ăn ở cho việc nhận giải thưởng của mình.<br />
+                - Khách hàng trúng thưởng phải nộp thuế thu nhập không thường xuyên (nếu có) theo quy định của pháp luật hiện hành.<br />
+                - Thời hạn cuối cùng Công ty TNHH Điện Tử Thông Minh TCL (Việt Nam) có trách nhiệm trao thưởng cho khách hàng trúng thưởng là 17 giờ ngày 11/03/2022.<br />
+
+            </p>
+            <p>
+                <b>9. Đầu mối giải đáp thắc mắc:</b>
+            </p>
+            <p>- Để được giải đáp các thắc mắc liên quan đến chương trình khuyến mại, khách hàng liên hệ bộ phận GTM của Công ty TNHH Điện Tử Thông Minh TCL (Việt Nam) theo số 028 3838 3922 (nhánh: 498) hoặc Hotline 1800 588 880 đề được hướng dẫn, giải đáp</p>
+
+            <p>
+                <b>10. Các quy định khác:</b>
+            </p>
+            <p>
+                - Công ty TNHH Điện Tử Thông Minh TCL (Việt Nam) sẽ sử dụng tên tuổi, địa chỉ và các hình ảnh, giọng nói của người trúng thưởng cho mục đích quảng cáo truyền thông Chương trình nếu được sự đồng ý của khách hàng.<br />
+                - Trường hợp Nhân viên TCL hoặc cửa hàng đăng ký giúp khách hàng, phải sử dụng số điện thoại và tên của Khách hàng để đăng ký, không được dùng tên hoặc điện thoại của mình để đăng ký.<br />
+                - Trường hợp một khách hàng mua nhiều sản phẩm (5 sản phẩm trở lên), một số điện thoại tối đa đăng ký tham gia 5 lần, khách hàng có thể sử dụng số điện thoại khác đăng ký tham gia, cung cấp chứng từ đầy đủ đối chiếu khi trúng và nhận giải.<br />
+                - Trong trường hợp xảy ra tranh chấp liên quan đến chương trình khuyến mại này, Công ty TNHH Điện Tử Thông Minh TCL (Việt Nam) có trách nhiệm trực tiếp giải quyết, nếu không thoả thuận được tranh chấp sẽ được xử lý theo quy định của pháp luật hiện hành. <br />
+                - Đối với những giải thưởng không có người trúng thưởng, Công ty TNHH Điện Tử Thông Minh TCL (Việt Nam) phải có trách nhiệm trích nộp 50% giá trị đã công bố của giải thưởng đó vào ngân sách nhà nước theo quy định tại khoản 4 điều 96 Luật Thương Mại.<br />
+
+            </p>
+            @*<div style="width: 400px; float:right;">
+                    <p style="text-align:center">
+                        <b>
+                            Đại diện Công ty TNHH Điện Tử Thông Minh<br />
+                            TCL (Việt Nam)<br />
+                            Tổng giám đốc<br />
+
+                            <br />
+                            <br />
+                            <br />
+                            DING WEI
+                        </b>
+                    </p>
+                </div>*@
+        </div>
+        <div role="tabpanel" class="tab-pane active" id="tab2">
+            <div class="text-center">
+                <h3>ĐĂNG KÝ THÔNG TIN</h3>
+                <p class="text-danger">(Thông tin đăng ký phải trùng khớp với thông tin trên hoá đơn mua hàng)</p>
+                <hr />
+                <form method="post" enctype="multipart/form-data" id="formpost">
+                    <input value="" class="form-control hidden" type="text" id="ID" name="ID" />
+                    <input value="" class="form-control hidden" type="text" id="PAYMENT" name="PAYMENT" />
+                    <input value="" class="form-control hidden" type="text" id="Code" name="Code" />
+                    <input class="form-control" type="text" id="Name" name="Name" required placeholder="Họ và tên ..." />
+                    <input class="form-control" type="number" id="Phone" name="Phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required placeholder="Số điện thoại ..." />
+
+                    <select class="form-control" id="BuyAdr" name="BuyAdr" required>
+                        <option value="">--Nơi mua hàng--</option>
+                        <option value="Điện máy Chợ Lớn">Điện máy Chợ Lớn</option>
+                        <option value="Điện máy xanh">Điện máy xanh</option>
+                        <option value="Điện máy Nguyễn Kim">Điện máy Nguyễn Kim</option>
+                        <option value="Điện máy Pico">Điện máy Pico</option>
+                        <option value="Điện máy HC">Điện máy HC</option>
+                        <option value="Điện máy Media Mart">Điện máy Media Mart</option>
+                    </select>
+                    <select class="form-control" id="Address" name="Address" required>
+                        <option value="">--Tỉnh/ Thành phố sinh sống--</option>
+                        <option value="An Giang">An Giang</option>
+                        <option value="Bà Rịa - Vũng Tàu">Bà Rịa - Vũng Tàu</option>
+                        <option value="Bắc Giang">Bắc Giang</option>
+                        <option value="Bắc Kạn">Bắc Kạn</option>
+                        <option value="Bạc Liêu">Bạc Liêu</option>
+                        <option value="Bắc Ninh">Bắc Ninh</option>
+                        <option value="Bến Tre">Bến Tre</option>
+                        <option value="Bình Định">Bình Định</option>
+                        <option value="Bình Dương">Bình Dương</option>
+                        <option value="Bình Phước">Bình Phước</option>
+                        <option value="Bình Thuận">Bình Thuận</option>
+                        <option value="Cà Mau">Cà Mau</option>
+                        <option value="Cần Thơ">Cần Thơ</option>
+                        <option value="Cao Bằng">Cao Bằng</option>
+                        <option value="Đà Nẵng">Đà Nẵng</option>
+                        <option value="Đắk Lắk">Đắk Lắk</option>
+                        <option value="Đắk Nông">Đắk Nông</option>
+                        <option value="Điện Biên">Điện Biên</option>
+                        <option value="Đồng Nai">Đồng Nai</option>
+                        <option value="Đồng Tháp">Đồng Tháp</option>
+                        <option value="Gia Lai">Gia Lai</option>
+                        <option value="Hà Giang">Hà Giang</option>
+                        <option value="Hà Nam">Hà Nam</option>
+                        <option value="Hà Nội">Hà Nội</option>
+                        <option value="Hà Tĩnh">Hà Tĩnh</option>
+                        <option value="Hải Dương">Hải Dương</option>
+                        <option value="Hải Phòng">Hải Phòng</option>
+                        <option value="Hậu Giang">Hậu Giang</option>
+                        <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                        <option value="Hòa Bình">Hòa Bình</option>
+                        <option value="Hưng Yên">Hưng Yên</option>
+                        <option value="Khánh Hòa">Khánh Hòa</option>
+                        <option value="Kiên Giang">Kiên Giang</option>
+                        <option value="Kon Tum">Kon Tum</option>
+                        <option value="Lai Châu">Lai Châu</option>
+                        <option value="Lâm Đồng">Lâm Đồng</option>
+                        <option value="Lạng Sơn">Lạng Sơn</option>
+                        <option value="Lào Cai">Lào Cai</option>
+                        <option value="Long An">Long An</option>
+                        <option value="Nam Định">Nam Định</option>
+                        <option value="Nghệ An">Nghệ An</option>
+                        <option value="Ninh Bình">Ninh Bình</option>
+                        <option value="Ninh Thuận">Ninh Thuận</option>
+                        <option value="Phú Thọ">Phú Thọ</option>
+                        <option value="Phú Yên">Phú Yên</option>
+                        <option value="Quảng Bình">Quảng Bình</option>
+                        <option value="Quảng Nam">Quảng Nam</option>
+                        <option value="Quảng Ngãi">Quảng Ngãi</option>
+                        <option value="Quảng Ninh">Quảng Ninh</option>
+                        <option value="Quảng Trị">Quảng Trị</option>
+                        <option value="Sóc Trăng">Sóc Trăng</option>
+                        <option value="Sơn La">Sơn La</option>
+                        <option value="Tây Ninh">Tây Ninh</option>
+                        <option value="Thái Bình">Thái Bình</option>
+                        <option value="Thái Nguyên">Thái Nguyên</option>
+                        <option value="Thanh Hóa">Thanh Hóa</option>
+                        <option value="Thừa Thiên Huế">Thừa Thiên Huế</option>
+                        <option value="Tiền Giang">Tiền Giang</option>
+                        <option value="Trà Vinh">Trà Vinh</option>
+                        <option value="Tuyên Quang">Tuyên Quang</option>
+                        <option value="Vĩnh Long">Vĩnh Long</option>
+                        <option value="Vĩnh Phúc">Vĩnh Phúc</option>
+                        <option value="Yên Bái">Yên Bái</option>
+                    </select>
+
+                    @*<select class="form-control" id="Product" name="Product" required onchange="ChooseProduct()">
+                            <option value="">--Chọn Sản Phẩm--</option>
+                            <option value="TV">TV</option>
+                            <option value="AC">AC</option>
+                            <option value="WM">WM</option>
+                        </select>*@
+                    @*<select class="form-control" id="Model" name="Model" required>
+                            <option value="">--Chọn Model--</option>
+                        </select>
+                        <select class="form-control" id="Size" name="Size" required>
+                            <option value="">--Chọn kích thước--</option>
+                        </select>*@
+                    <input class="form-control" type="text" id="IMEI" name="IMEI" required placeholder="IMEI ..." />
+                    <div class="box">
+                        <p class="col-md-3 title-invoice">Hóa đơn: </p>
+                        <div class="col-md-9">
+                            <input type="file" id="Invoice" name="Invoice" required multiple />
+                        </div>
+                    </div>
+                    <p class="text-danger" style="font-size:11px;">(Khách hàng upload hình ảnh hoá đơn mua sản phẩm)</p>
+                    <div class="text-center" style="margin-top:15px;">
+                        <button type="button" id="btnsendpost" class="btn btn-info"><i class="fa fa-check" aria-hidden="true"></i> GỬI THÔNG TIN</button>
+                        <img src="~/content/image/ajax-loader.gif" class="loader" id="loader" style="display:none;" />
+                        <p class="text-danger" id="lbErrPost"></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab3">
+            <br />
+            <h3 class="text-center">DANH SÁCH KHÁCH HÀNG TRÚNG THƯỞNG</h3>
+            <br />
+            <div>
+                <p class="text-success text-center" style="font-weight: bold;">Giải thưởng còn lại: <b>@ViewBag.giainhat</b> Giải nhất. <b>@ViewBag.giainhi</b> Giải nhì</p>
+            </div>
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>STT</th>
+                    <th>SỐ ĐIỆN THOẠI</th>
+                    <th>ĐỊA CHỈ</th>
+                    <th>CỬA HÀNG</th>
+                    <th>GIẢI THƯỞNG</th>
+                    <th>NGÀY QUAY THƯỞNG</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    string _temp = item.Phone.Substring(0, 7);
+                    string phonex = _temp + "xxx";
+                    index++;
+                    <tr>
+                        <td>@index</td>
+                        <td>@phonex</td>
+                        <td>@item.Address</td>
+                        <td>@item.BuyAdr</td>
+                        <td>
+                            @if (item.PAYMENT == "8")
+                            {
+                                <span>Giải nhất</span>
+                            }
+                            else if (item.PAYMENT == "7")
+                            {
+                                <span>Giải nhì</span>
+                            }
+                            else if (item.PAYMENT == "6")
+                            {
+                                <span>Giải nhì</span>
+                            }
+                            else
+                            {
+                                <span>Không trúng</span>
+                            }
+                        </td>
+                        <td>@item.Createdate</td>
+                    </tr>
+                }
+            </table>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="tab4">
+            <br />
+            <img src="~/Content/Image/BHDT.jpg" class="img-responsive" style="margin: 0 auto" />
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div id="gameModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <button type="button" class="close" onclick="window.location.reload();" style="font-size:38px; font-weight:800;color:red">&times;</button>
+        <div id="bao">
+            <div id="chart"></div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div id="Success" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" onclick="window.location.reload();" data-dismiss="modal" data-backdrop="static" data-keyboard="false">&times;</button>
+                <h3 class="modal-title text-center text-success">THÔNG BÁO</h3>
+            </div>
+            <div class="modal-body">
+                <p style="color:red; text-align:center;" id="rsgiai"></p>
+            </div>
+            <div class="modal-footer">
+                <button onclick="window.location.reload();" type="button" class="btn btn-success">QUAY TIẾP</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#gameModal').modal('show');
+            //$('#Success').modal('show');
+        });
+        function ChooseProduct() {
+            $("#Model").html("");
+            $("#Size").html("");
+            var product = $("#Product").val();
+            if (product == "TV") {
+                $("#Model").append(new Option("C825", "C825"));
+                $("#Model").append(new Option("C728", "C728"));
+                $("#Model").append(new Option("C725", "C725"));
+                $("#Model").append(new Option("C726", "C726"));
+                $("#Model").append(new Option("Q726", "Q726"));
+                $("#Model").append(new Option("Q716", "Q716"));
+                $("#Model").append(new Option("Q715", "Q715"));
+
+                $("#Size").append(new Option("50", "50"));
+                $("#Size").append(new Option("55", "55"));
+                $("#Size").append(new Option("65", "65"));
+                $("#Size").append(new Option("75", "75"));
+
+            } else if (product == "AC") {
+                $("#Model").append(new Option("TPG-11", "TPG-11"));
+
+                $("#Size").append(new Option("1HP", "1HP"));
+                $("#Size").append(new Option("1.5HP", "1.5HP"));
+                $("#Size").append(new Option("2HP", "2HP"));
+                $("#Size").append(new Option("2.5HP", "2.5HP"));
+            }
+            else if (product == "WM") {
+                $("#Model").append(new Option("K08", "K08"));
+                $("#Model").append(new Option("M03", "M03"));
+
+                $("#Size").append(new Option("8KG", "8KG"));
+                $("#Size").append(new Option("9KG", "9KG"));
+                $("#Size").append(new Option("10KG", "10KG"));
+            }
+        }
+        $('#btnsendpost').click(function () {
+            $('#loader').css('display', 'inline-block');
+            var fileUpload = $("#Invoice").get(0);
+            var files = fileUpload.files;
+
+            var Phone = $('#Phone').val();
+            var Name = $('#Name').val();
+            var Address = $('#Address').val();
+            //var Product = $('#Product').val();
+            //var Model = $('#Model').val();
+            //var Size = $('#Size').val();
+            var BuyAdr = $('#BuyAdr').val();
+            var IMEI = $('#IMEI').val();
+
+            if (files.length == 0) {
+                $('#loader').css('display', 'none');
+                $('#lbErrPost').html('TAI LEN ANH HOA DON HOAC THONG TIN SAN PHAM');
+            }
+            else if (files.length > 3) {
+                $('#loader').css('display', 'none');
+                $('#lbErrPost').html('CHI CAN UPLOAD 3 ANH');
+            }
+            else if (Name == "") {
+                $('#loader').css('display', 'none');
+                $('#lbErrPost').html('CHUA NHAP HO TEN NGUOI MUA HANG');
+            }
+            else if (Phone == "" || Phone.length != 10) {
+                $('#loader').css('display', 'none');
+                $('#lbErrPost').html('CHUA NHAP SO DIEN THOAI');
+            }
+            else if (Address == "") {
+                $('#loader').css('display', 'none');
+                $('#lbErrPost').html('CHUA NHAP THANH PHO');
+            }
+            else if (IMEI == "" || IMEI.length !== 19) {
+                $('#loader').css('display', 'none');
+                $('#lbErrPost').html('SO IMEI KHONG DUNG DINH DANG');
+            }
+            else if (BuyAdr == "") {
+                $('#loader').css('display', 'none');
+                $('#lbErrPost').html('CHUA NHAP DIA CHI MUA HANG');
+            } else {
+                var formData = new FormData();
+
+                // Looping over all files and add it to FormData object
+                for (var i = 0; i < files.length; i++) {
+                    console.log('(files[i].name:' + files[i].name);
+                    formData.append('Invoice', files[i]);
+                }
+
+                // You can update the jquery selector to use a css class if you want
+                formData.append('Phone', Phone);
+                formData.append('Name', Name);
+                formData.append('Address', Address);
+                formData.append('BuyAdr', BuyAdr);
+                formData.append('IMEI', IMEI);
+                //formData.append('Size', Size);
+                $.ajax({
+                    type: 'POST',
+                    url: '/VongQuay/Post',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (reponse) {
+                        console.log(reponse);
+                        if (reponse == -1) {
+                            $('#loader').css('display', 'none');
+                            $('#lbErrPost').html('BAN DA HET LUOT THAM GIA CHUONG TRINH NAY');
+                        }
+                        else if (reponse == -2) {
+                            $('#loader').css('display', 'none');
+                            $('#lbErrPost').html('DA HET HAN THAM GIA CHUONG TRINH. CHI TIET XEM TAI: http://khuyenmaitcl.tcl.com');
+                        }
+                        else {
+                            var result = $.parseJSON(reponse);
+                            $('#loader').css('display', 'none');
+                            $('#gameModal').modal('show');
+                            $('#PAYMENT').val(result.STATUS);
+                            $('#Code').val(result.CODE);
+                        }
+                    }
+                });
+            }
+
+        });
+    </script>
+    <script src="~/Content/Winwheel/d3.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        var padding = { top: 0, right: 0, bottom: 0, left: 0 },
+            w = 505,
+            h = 505,
+            r = Math.min(w, h) / 2,
+            rotation = 0,
+            oldrotation = 0,
+            picked = 100000,
+            oldpick = [],
+            color = d3.scale.category20c();//category20c()
+        var width = Math.max(window.screen.width, window.innerWidth);
+        if (width < 576) {
+            w = 250;
+            h = 250;
+            r = Math.min(w, h) / 2;
+        }
+        var data = [
+
+            { "label": "GIẢI NHẤT", "value": 8 }, //font-family
+            { "label": "KHÔNG TRÚNG", "value": 1 }, //color
+            { "label": "KHÔNG TRÚNG", "value": 2 }, //font-weight
+            { "label": "GIẢI NHÌ", "value": 7 }, //font-size
+            { "label": "KHÔNG TRÚNG", "value": 3 }, //background-color
+            { "label": "KHÔNG TRÚNG", "value": 4 }, //nesting
+            { "label": "GIẢI NHÌ", "value": 6 }, //sans-serif
+            { "label": "KHÔNG TRÚNG", "value": 5 }, //bottom
+
+        ];
+        var svg = d3.select('#chart')
+            .append("svg")
+            .data([data])
+            .attr("width", w + padding.left + padding.right)
+            .attr("height", h + padding.top + padding.bottom);
+
+        var container = svg.append("g")
+            .attr("class", "chartholder")
+            .attr("transform", "translate(" + (w / 2 + padding.left) + "," + (h / 2 + padding.top) + ")");
+        var vis = container
+            .append("g");
+
+        var pie = d3.layout.pie().sort(null).value(function (d) { return 1; });
+        // declare an arc generator function
+        var arc = d3.svg.arc().outerRadius(r);
+        // select paths, use arc generator to draw
+        var cl = function (c) {
+            var t = ["#e34747", "#2cb075", "#faa62a", "#429ed5", "#f1592a", "#faa62a", "#429ed5", "#faa62a", "#2cb075", "#429ed5", "#faa62a"]
+            return t[c];
+        }
+        var arcs = vis.selectAll("g.slice")
+            .data(pie)
+            .enter()
+            .append("g")
+            .attr("class", "slice");
+
+        arcs.append("path")
+            .attr("fill", function (d, i) {
+                return cl(i);
+            })
+            .attr("d", function (d) { return arc(d); });
+        // add the text
+        arcs.append("text").attr("transform", function (d) {
+            d.innerRadius = 0;
+            d.outerRadius = r;
+            d.angle = (d.startAngle + d.endAngle) / 2;
+            return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")translate(" + (d.outerRadius - 10) + ")";
+        })
+            .attr("text-anchor", "end")
+            .text(function (d, i) {
+                return data[i].label;
+            });
+
+        container.on("click", spin);
+        function spin(d) {
+
+            container.on("click", null);
+            //all slices have been seen, all done
+            if (oldpick.length == data.length) {
+                container.on("click", null);
+                return;
+            }
+
+
+            var ps = 360 / data.length,
+                pieslice = Math.round(1440 / data.length),
+                rd = Math.random(),
+                rng = Math.floor((rd * 1440) + 360);
+            rotation = (Math.round(rng / ps) * ps);
+            picked = Math.round(data.length - (rotation % 360) / ps);
+            picked = picked >= data.length ? (picked % data.length) : picked;
+            //fix rate to winning
+            //-----------------------------------------
+
+            //fix winning
+            //ví dụ nếu quay ra giải nhất check xem còn không
+            //nếu còn thì ok
+            //nếu không còn thì random lại để check lại
+            let index = -1;
+            let itemm = 1;
+            do {
+                index = Math.floor(Math.random() * 100);
+                console.log("index: " + index);
+            } while (itemm < 1);
+            var PAYMENT = $('#PAYMENT').val();
+            console.log("PAYMENT " + PAYMENT);
+            index = PAYMENT;
+            //-----------------------------------------
+            if (PAYMENT == 1) {
+                picked = 4;
+                rng = 1751;
+                rotation = 1822;
+            }
+            else if (PAYMENT == 2) {
+                picked = 7;
+                rng = 1480;
+                rotation = 1552;
+            }
+            else if (PAYMENT == 3) {
+                picked = 5;
+                rng = 1558;
+                rotation = 1642;
+            }
+            else if (PAYMENT == 4) {
+
+                picked = 2;
+                rng = 1712;
+                rotation = 1777;
+            }
+            else if (PAYMENT == 5) {
+                picked = 1;
+                rng = 1242;
+                rotation = 1327;
+            }
+            else if (PAYMENT == 6) {
+                picked = 3;
+                rng = 1548;
+                rotation = 1597;
+            }
+            else if (PAYMENT == 7) {
+
+                picked = 6;
+                rng = 1322;
+                rotation = 1372;
+            }
+            else if (PAYMENT == 8) {
+                picked = 0;
+                rng = 1461;
+                rotation = 1507;
+            }
+            //rotation += 90 - Math.round(ps / 2);
+            console.log("rng " + rng);
+            console.log("rotation " + rotation);
+            console.log("picked " + picked);
+
+
+            vis.transition()
+                .duration(5000)
+                .attrTween("transform", rotTween)
+                .each("end", function () {
+                    addDatatoSql(data[picked].value);
+                });
+        }
+
+        if (width < 576) {
+            container.append("circle")
+                .attr("cx", 0)
+                .attr("cy", 0)
+                .attr("r", 30)
+                .style({ "fill": "white", "cursor": "pointer" });
+            container.append("text")
+                .attr("x", 0)
+                .attr("y", 10)
+                .attr("text-anchor", "middle")
+                .text("QUAY")
+                .style({ "font-weight": "bold", "font-size": "14px", "fill": "gray", "font-family": "Tahoma" });
+        }
+        else {
+            container.append("circle")
+                .attr("cx", 0)
+                .attr("cy", 0)
+                .attr("r", 60)
+                .style({ "fill": "white", "cursor": "pointer" });
+            container.append("text")
+                .attr("x", 0)
+                .attr("y", 15)
+                .attr("text-anchor", "middle")
+                .text("QUAY")
+                .style({ "font-weight": "bold", "font-size": "30px", "fill": "gray", "font-family": "Tahoma" });
+        }
+
+        function rotTween(to) {
+            var i = d3.interpolate(oldrotation % 360, rotation);
+            return function (t) {
+                return "rotate(" + i(t) + ")";
+            };
+        }
+        function getRandomNumbers() {
+            var array = new Uint16Array(1000);
+            var scale = d3.scale.linear().range([360, 1440]).domain([0, 100000]);
+            if (window.hasOwnProperty("crypto") && typeof window.crypto.getRandomValues === "function") {
+                window.crypto.getRandomValues(array);
+                console.log("works");
+            } else {
+                //no support for crypto, get crappy random numbers
+                for (var i = 0; i < 1000; i++) {
+                    array[i] = Math.floor(Math.random() * 100000) + 1;
+                }
+            }
+            return array;
+        }
+        function addDatatoSql(giai) {
+            //show giải thưởng đã trúng
+
+            var Phone = $('#Phone').val();
+            var Code = $('#Code').val();
+            var Payment = $('#PAYMENT').val();
+
+            if (giai == 1 || giai == 2 || giai == 3 || giai == 4 || giai == 5) {
+                $('#rsgiai').html('TCL CHUC QUY KHACH CO MA DU THUONG ' + Code + ' MAY MAN LAN SAU. CHI TIET LH 1800 588 880 hoac 028 3838 3922 (NHANH 498), website: http://khuyenmaitcl.tcl.com');
+            }
+            else if (giai == 7 || giai == 6) {
+                $('#rsgiai').html('TCL CHUC MUNG QUY KHACH CO MA DU THUONG ' + Code + ' DA TRUNG GIAI NHI HOAN TIEN 30% GIA TRI SAN PHAM TU CT "CO HOI SO HUU QLED 0 DONG". LIEN HE 028 3838 3922 (NHANH 498) DE DUOC HUONG DAN NHAN THUONG. CHI TIET XEM TAI: http://khuyenmaitcl.tcl.com');
+            }
+            else if (giai == 8) {
+                $('#rsgiai').html('TCL CHUC MUNG QUY KHACH CO MA DU THUONG ' + Code + ' DA TRUNG GIAI NHAT HOAN TIEN 100% GIA TRI SAN PHAM TU CT "CO HOI SO HUU QLED 0 DONG". LIEN HE 028 3838 3922 (NHANH 498) DE DUOC HUONG DAN NHAN THUONG. CHI TIET XEM TAI: http://khuyenmaitcl.tcl.com');
+            } else {
+                $('#rsgiai').html('THÔNG TIN ĐĂNG KÝ CỦA QUÝ KHÁCH CÒN THIẾU, VUI LÒNG KIỂM TRA LẠI. CHI TIẾT LH 028 3836 6111 (NHÁNH 498), website: http://khuyenmaitcl.tcl.com');
+            }
+
+
+            $('#Success').modal('show');
+
+            var formData = new FormData();
+
+            formData.append('Phone', Phone);
+            formData.append('Payment', Payment);
+            formData.append('Code', Code);
+
+            $.ajax({
+                type: 'POST',
+                url: '/VongQuay/SendComplate',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (reponse) {
+                    console.log(reponse);
+                    if (respone == -1) {
+                        alert("CHƯA GỬI ĐƯỢC BRANDNAME CHO KHÁCH HÀNG");
+                    }
+                }
+            });
+
+        }
+    </script>
+}

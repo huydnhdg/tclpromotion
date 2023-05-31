@@ -1,0 +1,178 @@
+﻿@model List<TCLPromotion.Models.KeyStore>
+@{
+    ViewBag.Title = "Index";
+    var index = 0;
+}
+<a href="~/">
+    <img src="~/Content/Image/banner.jpg" class="img-responsive" />
+</a>
+<div class="container" >
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation">
+            <a href="#yorkminster" aria-controls="home" role="tab" data-toggle="tab">
+                <i class="fa fa-bookmark" aria-hidden="true"></i> THỂ LỆ
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#yorkminster2" aria-controls="home" role="tab" data-toggle="tab">
+                <i class="fa fa-list-ol" aria-hidden="true"></i> CỬA HÀNG
+            </a>
+        </li>
+        <li role="presentation" class="active">
+            <a href="#yorkcastle" aria-controls="profile" role="tab" data-toggle="tab">
+                <i class="fa fa-gift" aria-hidden="true"></i> ĐK THAM GIA
+            </a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane" id="yorkminster">
+            <p style="text-align:center;font-size:21px;padding:25px"><b>THỂ LỆ CHƯƠNG TRÌNH KHUYẾN MÃI</b></p>
+            <p>
+                1. Tên chương trình khuyến mãi: <b>"TCL - 22 NĂM ĐỒNG HÀNH CÙNG VIỆT NAM"</b><br />
+                2. Thời gian khuyến mãi: 18/10/2021 đến 01/11/2021<br />
+                3. Đối tượng tham gia: Khách hàng sử dụng sản phẩm TCL (TV, máy giặt, máy lạnh) trước ngày 22/10<br />
+                4. Quà tri ân: Thẻ nạp điện thoại, voucher trị giá 2,200,000 VND (voucher có thể sử dụng kết hợp chung với khuyến mãi tại cửa hàng)<br />
+                5. Voucher áp dụng mua sản phẩm QLED TV: C825, C728, C725, C726, Q726<br />
+                6. Cửa hàng áp dụng voucher: theo danh sách quy định<br />
+                <b>I. Cách thức tham gia:</b><br />
+                Bước 1: Khách hàng truy cập trang web chương trình http://khuyenmaitcl.tcl.com để điền thông tin và cung cấp hình ảnh hoá đơn mua hàng trước 22/10 hoặc hình ảnh số seri sản phẩm đang sử dụng.<br />
+                Bước 2: Khách hàng tham gia mini game trên trang web để nhận quà tri ân từ TCL.<br />
+                Bước 3: Sau khi tham gia game, nếu khách hàng có nhu cầu nhận voucher 2,200,000 VND để mua sản phẩm QLED, cung cấp thông tin như: CMND/CCCD, địa chỉ. <br />
+                Bước 4: Sau khi khách hàng điền đầy đủ và gửi thông tin thành công, hệ thống sẽ gửi code điện tử qua tin nhắn SMS đến số điện thoại khách hàng đã đăng ký.<br />
+                Định nghĩa voucher: Voucher được gửi đến khách hàng với dạng code điện tử, và có giá trị mua sản phẩm trong vòng 3 ngày kệ từ ngày nhận code.<br />
+                <b>II. Quy định về thời gian, cách thức nhận quà:</b><br />
+                - Đối với khách hàng trúng thẻ điện thoại sau khi kiểm tra thông tin khách hàng cung cấp, trong vòng 7 - 10 ngày làm việc, TCL sẽ chuyển thẻ nạp điện thoại trực tiếp vào tài khoản số điện thoại đăng ký.<br />
+                - Đối với khách hàng sử dụng code điện tử để mua hàng, khách hàng mang theo mã code điện tử đến một trong các cửa hàng theo danh sách áp dụng code điện tử để chọn mua sản phẩm, khi thanh toán khách hàng đưa mã code điện tử cho nhân viên cửa hàng kiểm tra
+                và giảm giá trực tiếp trên hoá đơn (voucher có thể sử dụng kết hợp chung với chương trình khuyến mãi tại cửa hàng).<br />
+                <b>III. Danh sách cửa hàng áp dụng voucher code điện tử:</b><br />
+                Danh sách cửa hàng áp dụng voucher code điện tử: <a href="#yorkminster2" role="tab" data-toggle="tab">(xem chi tiết tại đây)</a>
+            </p>
+
+            <p>
+                <b>IV. Điều kiện sử dụng code điện tử:</b><br />
+                - Code điện tử không có giá trị quy đổi thành tiền mặt<br />
+                - Một code điện tử chỉ được áp dụng mua một sản phẩm.<br />
+                - Code điện tử có giá trị sử dụng từ ngày 22/10 – 03/11.<br />
+                - Code điện tử được khấu trừ trực tiếp vào hoá đơn thanh toán khi mua sản phẩm theo quy định tại cửa hàng áp dụng code điện tử.<br />
+                - Một khách hàng được đăng ký một lần, tương tự nhận được một code điện tử 2,200,000 VND.<br />
+                - Số lượng code điện tử có hạn, chương trình có thể kết thúc sớm hơn thời gian dự kiến<br/>
+                - Để được giải đáp các thắc mắc liên quan đến chương trình, khách hàng liên hệ bộ phận GTM của Công ty TNHH Điện Tử Thông Minh TCL (Việt Nam) theo số điện thoại: 028.3836 6111 (Ext: 498) hoặc hộp thư ngan.langngockim@tclvn.com.vn.<br />
+
+            </p>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="yorkminster2">
+            <h2 class="text-center">DANH SÁCH CỬA HÀNG ÁP DỤNG VOUCHER CODE ĐIỆN TỬ</h2>
+
+            <div class="col-md-2"></div>
+            <div class="col-md-8 col-xs-12">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr class="bg-primary">
+                            <th style="width:50px">STT</th>
+                            <th>Thành phố</th>
+                            <th>Cửa hàng</th>
+                            <th>Địa chỉ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            index++;
+                        <tr>
+                            <td>@index</td>
+                            <td>@item.Province</td>
+                            <td>@item.Store</td>
+                            <td>@item.Address</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div role="tabpanel" class="tab-pane active" id="yorkcastle">
+            <div class="text-center">
+                <h3>ĐĂNG KÝ THÔNG TIN</h3>
+                <p class="text-danger">(Thông tin đăng ký phải trùng khớp với thông tin trên hoá đơn mua hàng)</p>
+                <hr />
+                <form method="post" action="/Trian/Send" enctype="multipart/form-data" id="formpost">
+                    <input class="form-control" type="text" id="Name" name="Name" required placeholder="Họ và tên ..." />
+                    <input class="form-control" type="number" id="Phone" name="Phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required placeholder="Số điện thoại ..." />
+
+                    <div class="box">
+                        <input type="file" id="Invoice" name="Invoice" required multiple />
+
+                    </div>
+                    <p class="text-center text-danger" style="font-size:11px">(Khách hàng upload hình ảnh hoá đơn hoặc hình ảnh thực tế sản phẩm)</p>
+                    <div class="form-group">
+                        <div class="text-center">
+
+                            <button type="button" class="btn btn-info" id="btnsubmit"><i class="fa fa-check" aria-hidden="true"></i> GỬI THÔNG TIN</button>
+                            <img src="~/content/image/ajax-loader.gif" class="loader" id="loader" style="display:none;" />
+                            <p class="text-danger" id="lbErrPost"></p>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $("#btnsubmit").click(function () {
+            $('#loader').css('display', 'inline-block');
+            var fileUpload = $("#Invoice").get(0);
+            var files = fileUpload.files;
+            var Phone = $('#Phone').val();
+            var Name = $('#Name').val();
+            if (files.length == 0) {
+                $('#loader').css('display', 'none');
+                $('#lbErrPost').html('TAI LEN ANH HOA DON HOAC THONG TIN SAN PHAM');
+            }
+            if (files.length > 3) {
+                $('#loader').css('display', 'none');
+                $('#lbErrPost').html('CHI CAN UPLOAD 3 ANH');
+            }
+            else if (Name == "" || Phone.length < 10) {
+                $('#loader').css('display', 'none');
+                $('#lbErrPost').html('SO DIEN THOAI KHONG DUNG HOAC CHUA NHAP TEN NGUOI NHAN');
+            }
+            else {
+
+                var formData = new FormData();
+
+                // Looping over all files and add it to FormData object
+                for (var i = 0; i < files.length; i++) {
+                    console.log('(files[i].name:' + files[i].name);
+                    formData.append('Invoice', files[i]);
+                }
+
+                // You can update the jquery selector to use a css class if you want
+                formData.append('Phone', Phone);
+                formData.append('Name', Name);
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'Trian/Post',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (reponse) {
+                        console.log(reponse);
+                        if (reponse == -1) {
+                            $('#loader').css('display', 'none');
+                            $('#lbErrPost').html('BAN DA HET LUOT THAM GIA CHUONG TRINH NAY');
+                        } else {
+                            window.location.href = "/tri-an/game?id=" + reponse;
+                        }
+                    }
+                });
+            }
+
+
+        });
+    </script>
+}

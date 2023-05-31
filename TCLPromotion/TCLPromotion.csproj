@@ -1,0 +1,615 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{52EBF09F-4446-4756-85DE-5B3477DAE293}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TCLPromotion</RootNamespace>
+    <AssemblyName>TCLPromotion</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44302</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.5.3.2, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.5.3.2\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.1.4.1\lib\net46\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.7.11\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.7.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.3\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.4.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.4.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.4.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.4.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.4.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="API\VoucherController.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Codes1Controller.cs" />
+    <Compile Include="Areas\Admin\Controllers\CodesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Customer3004Controller.cs" />
+    <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CustomerNew1Controller.cs" />
+    <Compile Include="Areas\Admin\Controllers\CustomerHailocController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CustomerTrian122Controller.cs" />
+    <Compile Include="Areas\Admin\Controllers\CustomerNewController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\InforsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\KeyStoreController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Voucher3004Controller.cs" />
+    <Compile Include="Areas\Admin\Controllers\WorldCupController.cs" />
+    <Compile Include="Areas\Admin\Controllers\VoucherApi23Controller.cs" />
+    <Compile Include="Areas\Admin\Controllers\VoucherApiController.cs" />
+    <Compile Include="Areas\Admin\Controllers\VoucherController.cs" />
+    <Compile Include="Areas\Admin\Data\CustomerVoucher.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DMXController.cs" />
+    <Compile Include="Controllers\ExchangeVoucherController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SendVoucherActiveController.cs" />
+    <Compile Include="Controllers\Kichhoat3004Controller.cs" />
+    <Compile Include="Controllers\ListAgentController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SearchVoucherController.cs" />
+    <Compile Include="Controllers\HailocController.cs" />
+    <Compile Include="Controllers\SendVoucherController.cs" />
+    <Compile Include="Controllers\Trian122Controller.cs" />
+    <Compile Include="Controllers\TrianController.cs" />
+    <Compile Include="Controllers\UseVoucherController.cs" />
+    <Compile Include="Controllers\VongquayController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AspNetRole.cs">
+      <DependentUpon>TCLPromotion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>TCLPromotion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserClaim.cs">
+      <DependentUpon>TCLPromotion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>TCLPromotion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Brandname.cs">
+      <DependentUpon>TCLPromotion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Code.cs">
+      <DependentUpon>TCLPromotion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer.cs">
+      <DependentUpon>TCLPromotion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer3004.cs">
+      <DependentUpon>TCLPromotion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>TCLPromotion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Infor.cs">
+      <DependentUpon>TCLPromotion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KeyStore.cs">
+      <DependentUpon>TCLPromotion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LogTopup.cs">
+      <DependentUpon>TCLPromotion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MADUTHUONG.cs">
+      <DependentUpon>TCLPromotion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\TCLPromotion.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TCLPromotion.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TCLPromotion.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TCLPromotion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TCLPromotion.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TCLPromotion.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Voucher.cs">
+      <DependentUpon>TCLPromotion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Voucher3004.cs">
+      <DependentUpon>TCLPromotion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VOUCHER_API.cs">
+      <DependentUpon>TCLPromotion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="Utils\Common.cs" />
+    <Compile Include="Utils\SendBrandName.cs" />
+    <Compile Include="Utils\SendMsgReceiver.cs" />
+    <Compile Include="Utils\TOPUP.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Content\Site.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\hover-min.css" />
+    <Content Include="Content\hover.css" />
+    <Content Include="Content\Icon\magic 1.png" />
+    <Content Include="Content\Icon\magic 2.png" />
+    <Content Include="Content\Icon\magic 3.png" />
+    <Content Include="Content\Icon\magic 4.png" />
+    <Content Include="Content\Icon\Mid Icon.png" />
+    <Content Include="Content\Icon\Spaceman 1.png" />
+    <Content Include="Content\Icon\Spaceman 2.png" />
+    <Content Include="Content\Icon\Spaceman 3.png" />
+    <Content Include="Content\Icon\Spaceman 4.png" />
+    <Content Include="Content\Image\ajax-loader.gif" />
+    <Content Include="Content\Image\banner-122.jpg" />
+    <Content Include="Content\Image\banner-hai-loc.jpg" />
+    <Content Include="Content\Image\banner.jpg" />
+    <Content Include="Content\Image\banner_1_1.jpg" />
+    <Content Include="Content\Image\bg-game.png" />
+    <Content Include="Content\Image\bg-ss.png" />
+    <Content Include="Content\Image\bg_03.png" />
+    <Content Include="Content\Image\BHDT.jpg" />
+    <Content Include="Content\Image\button-now.png" />
+    <Content Include="Content\Image\CL-bgg.jpg" />
+    <Content Include="Content\Image\Cây-lộc-lì-xì-1366.png" />
+    <Content Include="Content\Image\Cây-lộc-lì-xì-bg.png" />
+    <Content Include="Content\Image\Cây-lộc-lì-xì-bgg.png" />
+    <Content Include="Content\Image\Cây-lộc-lì-xì-lx.png" />
+    <Content Include="Content\Image\Cây-lộc-lì-xì-top_01.png" />
+    <Content Include="Content\Image\DEMO1.mp4" />
+    <Content Include="Content\Image\DEMO2.mov" />
+    <Content Include="Content\Image\DEMO2.mp4" />
+    <Content Include="Content\Image\DEMO2.webm" />
+    <Content Include="Content\Image\DEMO_ok_1.mp4" />
+    <Content Include="Content\Image\DEMO_ok_1.webm" />
+    <Content Include="Content\Image\login.png" />
+    <Content Include="Content\Image\popup.png" />
+    <Content Include="Content\Image\poster.jpg" />
+    <Content Include="Content\Image\tcl_home.jpg" />
+    <Content Include="Content\Image\update.mp4" />
+    <Content Include="Content\Image\update.webm" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\Voucher\1920x1080%28x3%29C645 %281%29.jpg" />
+    <Content Include="Content\Voucher\1920x1080%28x3%29C645.jpg" />
+    <Content Include="Content\Voucher\1920x1080%28x3%29C645_Q646.jpg" />
+    <Content Include="Content\Voucher\750x2000bannerMBC645 %281%29.jpg" />
+    <Content Include="Content\Voucher\750x2000bannerMBC645.jpg" />
+    <Content Include="Content\Voucher\750x2000bannerMBC645_Q646.jpg" />
+    <Content Include="Content\Voucher\Home-mobile-ad.jpg" />
+    <Content Include="Content\Voucher\mobile_banner.jpg" />
+    <Content Include="Content\Voucher\mobile_banner.png" />
+    <Content Include="Content\Voucher\TCL-Home.jpg" />
+    <Content Include="Content\Voucher\tcl_home.jpg" />
+    <Content Include="Content\Voucher\website.jpg" />
+    <Content Include="Content\Winwheel\bgspin.png" />
+    <Content Include="Content\Winwheel\d3.js" />
+    <Content Include="Content\Winwheel\main.css" />
+    <Content Include="Content\Winwheel\spin_off.png" />
+    <Content Include="Content\Winwheel\spin_on.png" />
+    <Content Include="Content\Winwheel\tick.mp3" />
+    <Content Include="Content\Winwheel\wheel_back.png" />
+    <Content Include="Content\Winwheel\Winwheel.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Models\TCLPromotion.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TCLPromotion.edmx</DependentUpon>
+      <LastGenOutput>TCLPromotion.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\TCLPromotion.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TCLPromotion.edmx</DependentUpon>
+      <LastGenOutput>TCLPromotion.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="nlog.config" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Areas\Admin\Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Areas\Admin\Views\Manage\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Areas\Admin\Views\Manage\SetPassword.cshtml" />
+    <Content Include="Areas\Admin\Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\About.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Contact.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Register.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\ResetPassword.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\SendCode.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\VerifyCode.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\Lockout.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CustomerNew\Index.cshtml" />
+    <EntityDeploy Include="Models\TCLPromotion.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TCLPromotion.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\TCLPromotion.edmx.diagram">
+      <DependentUpon>TCLPromotion.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Admin\Views\Voucher\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Voucher\UploadFile.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Areas\Admin\Views\KeyStore\UploadFile.cshtml" />
+    <Content Include="Areas\Admin\Views\VoucherApi\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\VoucherApi\UploadFile.cshtml" />
+    <Content Include="Data\tcl_voucher.xlsx" />
+    <Content Include="Areas\Admin\Views\CustomerNew1\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CustomerTrian122\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CustomerHailoc\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CustomerHailoc\Topup.cshtml" />
+    <Content Include="Areas\Admin\Views\Voucher3004\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer3004\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\UploadFile.cshtml" />
+    <Content Include="Areas\Admin\Views\KeyStore\Index.cshtml" />
+    <Content Include="Data\upload key store.xlsx" />
+    <Content Include="Data\code voucher api.xlsx" />
+    <Content Include="Areas\Admin\Views\VoucherApi23\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\VoucherApi23\UploadFile.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\VoucherApi23\UploadFileSendStore.cshtml" />
+    <Content Include="Areas\Admin\Views\Worldcup\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Worldcup\UploadFile.cshtml" />
+    <Content Include="Areas\Admin\Views\Worldcup\UploadFileSendStore.cshtml" />
+    <Content Include="Areas\Admin\Views\Codes\Index.cshtml" />
+    <Content Include="Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Infors\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Infors\EditStatus.cshtml" />
+    <Content Include="Areas\Admin\Views\Codes1\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Codes1\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Codes1\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Codes1\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Codes1\Index.cshtml" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Uploads\Imageorder\383-329981390_977579736961554_3595412983113423941_n.jpg" />
+    <Content Include="Uploads\Imageorder\986-12973607_1703671219911084_4504932416928770110_o.png" />
+    <Content Include="Uploads\Imageproduct\208-332464783_2145554382321589_5676057782406639966_n.jpg" />
+    <Content Include="Uploads\Imageproduct\412-z4104972875536_7e19921af13feae74d71b14773f3d63d.jpg" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Trian\Index.cshtml" />
+    <Content Include="Views\Trian\Game.cshtml" />
+    <Content Include="Views\SearchVoucher\Index.cshtml" />
+    <Content Include="Views\ListAgent\Index.cshtml" />
+    <Content Include="Views\UseVoucher\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutAgent.cshtml" />
+    <Content Include="Views\Vongquay\Index.cshtml" />
+    <Content Include="Views\Trian122\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutTrian.cshtml" />
+    <Content Include="Views\Hailoc\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutHailoc.cshtml" />
+    <Content Include="Views\Shared\_LayoutNV.cshtml" />
+    <Content Include="Views\Hailoc\List.cshtml" />
+    <Content Include="Views\Kichhoat3004\Index.cshtml" />
+    <Content Include="Views\Kichhoat3004\Active.cshtml" />
+    <Content Include="Views\Kichhoat3004\History.cshtml" />
+    <Content Include="Views\SendVoucher\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutSendVoucher.cshtml" />
+    <Content Include="Views\SendVoucherActive\Active.cshtml" />
+    <Content Include="Views\SendVoucherActive\History.cshtml" />
+    <Content Include="Views\SendVoucherActive\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutActive.cshtml" />
+    <Content Include="Views\DMX\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutVongQuay.cshtml" />
+    <Content Include="Views\ExchangeVoucher\Index.cshtml" />
+    <Content Include="Views\ExchangeVoucher\Success.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\Base\" />
+    <Folder Include="Uploads\Hailoc\" />
+    <Folder Include="Uploads\Trian\" />
+    <Folder Include="Uploads\VongQuay\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55182</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44302/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

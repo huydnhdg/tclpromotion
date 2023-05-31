@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <meta name="description" content="" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/hover-min.css" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+
+        /*.main {*/
+            /* The image used */
+            /*background-image: url(/Content/Voucher/tcl_home.jpg);*/
+            /* Full height */
+            /*height: 100vh;*/
+            /* Center and scale the image nicely */
+            /*background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }*/
+        /*@@media(max-width: 1024px){
+            .main {
+                background-image: url(/Content/Voucher/mobile_banner.jpg) !important;
+                background-size: cover;
+                height: 130vh;
+                background-position: top;
+            }
+
+        }*/
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("TCLVN", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/kich-hoat-voucher">KÍCH HOẠT MÃ</a></li>
+                    <li><a href="/kich-hoat-voucher/lich-su">LỊCH SỬ KÍCH HOẠT</a></li>
+
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div style="padding-top: 60px">
+        <div class="main">
+            @*<img src="~/Content/Voucher/tcl_home.jpg" class="img-responsive" id="img-pc" />
+            <img src="~/Content/Voucher/mobile_banner.jpg" class="img-responsive" id="img-mb" style="display:none" />*@
+            @RenderBody()
+        </div>
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,35 @@
+﻿@model TCLPromotion.Models.Code
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Code</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Model_size)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Model_size)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price_topup)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price_topup)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,33 @@
+﻿@model List<TCLPromotion.Models.AspNetUser>
+@{
+    ViewBag.Title = "Index";
+    var index = 0;
+}
+<img src="~/Content/Image/banner.jpg" class="img-responsive" />
+<div class="container">
+
+    <h2 class="text-center">DANH SÁCH CỬA HÀNG ÁP DỤNG VOUCHER CODE ĐIỆN TỬ</h2>
+
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr class="bg-primary">
+                    <th style="width:50px">STT</th>
+                    <th>Cửa hàng</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    index++;
+                    <tr>
+                        <td>@index</td>
+                        <td>@item.PhoneNumber</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-3"></div>
+</div>

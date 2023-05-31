@@ -1,0 +1,252 @@
+﻿
+@{
+    ViewBag.Title = "Success";
+    Layout = "~/Views/Shared/_LayoutSendVoucher.cshtml";
+}
+
+@{
+    Layout = "~/Views/Shared/_LayoutSendVoucher.cshtml";
+    int index = 0;
+}
+
+<div class="main">
+    <img src="~/Content/Voucher/1920x1080(x3)C645_Q646.jpg" class="img-responsive" id="img-pc" />
+    <img src="~/Content/Voucher/750x2000bannerMBC645_Q646.jpg" class="img-responsive" id="img-mb" style="display:none" />
+    <div class="main-box">
+        <div class="padding-main">
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class=" col-md-6 text-center">
+                    <div class="form-main">
+                        <div class="form-content">
+                            <h4>
+                                <b style="color:black">
+                                    Chúc mừng bạn đã gửi thông tin thành công!<br />
+                                    Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.
+                                </b>
+                            </h4>
+                            <p>@Html.ActionLink("Quay về trang chủ", "Index","ExchangeVoucher")</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #e1e1e1 !important;
+    }
+
+    .main {
+        font-size: 16px;
+        color: white;
+        position: relative;
+    }
+
+    h2 {
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .main-box {
+        width: 100%;
+        position: absolute;
+        z-index: 999;
+        top: 0;
+        position: fixed;
+    }
+
+    .padding-main {
+        padding-left: 5%;
+        padding-right: 5%;
+        margin: auto;
+    }
+
+    .form-content {
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+
+    .form-main {
+        margin-top: 20%;
+    }
+
+    .form-content {
+        /*border: 1px solid gray;*/
+        border-radius: 20px;
+        padding: 100px 5px;
+      
+        background-color: #e1e1e1
+    }
+
+    form {
+        padding-top: 25px;
+    }
+
+    .modal-content {
+        border-radius: unset;
+        overflow-y: scroll;
+        height: 100vh;
+    }
+
+    .close {
+        color: #f67d7d;
+        opacity: 1;
+    }
+
+    a {
+        color: #002ab4;
+    }
+
+    .text-warning {
+        color: #f7241f;
+        font-weight: bold;
+    }
+
+    @@media(min-width: 1200px) {
+    }
+
+    @@media(max-width: 1024px) {
+        #img-mb {
+            display: block !important;
+        }
+
+        #img-pc {
+            display: none !important;
+        }
+
+        .form-main {
+            margin-top: 180%;
+        }
+
+        .main-box {
+            position: absolute;
+        }
+
+        .main {
+            font-size: 13px;
+        }
+
+        h2 {
+            font-size: 18px;
+        }
+    }
+
+    @@media (min-width: 768px) {
+        .modal-dialog {
+            width: 840px;
+            margin: auto;
+        }
+    }
+
+    .note {
+        font-size: 10px;
+        color: white;
+        margin-left: 0px !important;
+    }
+</style>
+@section scripts{
+    <script>
+        function Rules() {
+            $('#Rules').modal('show');
+        }
+        function SendForm() {
+            $('#loader').css('display', 'inline-block');
+            var Cusname = $('#Cusname').val();
+            var Phone = $('#Phone').val();
+            if (Cusname.length < 5) {
+                $('#txt-result').html("/* Yêu cầu nhập tên người nhận */");
+                $('#loader').css('display', 'none');
+            }
+            else if (Phone.length != 10) {
+                $('#txt-result').html("/* Số điện thoại chưa đúng */");
+                $('#loader').css('display', 'none');
+            }
+            else {
+                //$('#txt-result').html();
+                //$('#txt-result').html("/* Chương trình đã kết thúc. Mọi thắc mắc vui lòng liên hệ 028 3838 3922 (nhánh: 498) đề được hướng dẫn, giải đáp*/");
+                //$('#loader').css('display', 'none');
+                //window.location.reload();
+                //
+                var formData = new FormData();
+                formData.append('Phone', Phone);
+                formData.append('Cusname', Cusname);
+                $.ajax({
+                    type: 'POST',
+                    url: '/SendVoucher/Confirm',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (reponse) {
+                        console.log(reponse);
+                        if (reponse.Status == -1) {
+                            $('#txt-result').html("/* " + reponse.Message + " */");
+                            $('#loader').css('display', 'none');
+                        } else {
+                            $('#txt-result').html("/* " + reponse.Message + " */");
+                            $('#loader').css('display', 'none');
+                        }
+                    }
+                });
+            }
+        }
+        function Store() {
+            $('#Store').modal('show');
+        }
+    </script>
+    <script>
+        function checkPhone(phone) {
+            var phone_string = phone.value;
+            var id = phone.id;
+            if (phone_string.length == 0) {
+                $('#' + id + '_normal').hide();
+                $('#' + id + '_error').show();
+                $('#' + id + '_error').html("Vui lòng nhập số điện thoại!");
+
+            } else {
+                if (phone_string.length < 10 || phone_string.length > 11) {
+                    $('#' + id + '_normal').hide();
+                    $('#' + id + '_error').show();
+                    $('#' + id + '_error').html("Vui lòng nhập đúng định dạng số điện thoại");
+
+                } else {
+                    if (phone_string.startsWith("0") && phone_string.length > 10) {
+                        $('#' + id + '_normal').hide();
+                        $('#' + id + '_error').show();
+                        $('#' + id + '_error').html("Vui lòng nhập đúng định dạng số điện thoại");
+
+                    } else {
+                        if (id == "phone1") {
+                            //getInfoByPhone(phone_string);
+                        }
+
+                        $('#' + id + '_error').hide();
+                        $('#' + id + '_error').html("");
+                        $('#' + id + '_error').hide();
+                    }
+                }
+            }
+        }
+
+        function checkName(name) {
+            var name_string = name.value;
+            var id = name.id;
+            if (name_string.length == 0) {
+                $('#' + id + '_normal').hide();
+                $('#' + id + '_error').show();
+                $('#' + id + '_error').html("Vui lòng nhập tên của bạn!");
+            }
+        }
+        function checkCode(model) {
+            var model_string = model.value;
+            var id = model.id;
+            if (model_string.length == 0) {
+                $('#' + id + '_normal').hide();
+                $('#' + id + '_error').show();
+                $('#' + id + '_error').html("Vui lòng nhập model của sản phẩm!");
+            }
+        }
+    </script>
+}

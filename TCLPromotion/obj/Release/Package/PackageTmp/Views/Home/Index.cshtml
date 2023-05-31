@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<img src="~/Content/Image/banner_1_1.jpg" class="img-responsive" />
+<!-- Modal -->
+<div id="cateModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="col-sm-6 col-xs-6 hvr-grow">
+                    <a href="/vong-quay" title="khách hàng mới">
+                        <img src="~/Content/Image/button-now.png" class="img-responsive" />
+                    </a>
+                </div>
+                <div class="col-sm-6 col-xs-6 hvr-grow">
+                    <a href="/tri-an" title="tri ân khách hàng cũ">
+                        <img src="~/Content/Image/button-now.png" class="img-responsive" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $('#cateModal').modal('show');
+    </script>
+}

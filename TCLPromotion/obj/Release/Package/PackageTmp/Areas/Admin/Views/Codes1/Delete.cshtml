@@ -1,0 +1,41 @@
+﻿@model TCLPromotion.Models.Code
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Code</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Model_size)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Model_size)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price_topup)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price_topup)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

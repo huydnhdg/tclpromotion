@@ -1,0 +1,78 @@
+﻿@using TCLPromotion.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+<style>
+    .form-group {
+        margin-bottom: 5px;
+    }
+
+    input {
+        margin-bottom: 5px;
+    }
+    .login{
+        color: white;
+        position:fixed;
+        top:0;
+        width: 100%;
+    }
+    .box-login {
+        margin-top: 20%;
+        background-color: rgba(0,0,0,0.3);
+        padding: 50px 20px;
+        border-radius: 20px;
+    }
+    .padding-main{
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    @@media(max-width: 1024px){
+        .box-login {
+            margin-top: 80%;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 25px;
+        }
+    }
+</style>
+
+
+
+<div class="login">
+    <div class="padding-main">
+        <div class="row">
+            <div class="col-md-6">
+
+            </div>
+            <div class="col-md-6 box-login">
+                <h2 class="text-center">@ViewBag.Title.</h2>
+                <section id="loginForm">
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <h4 class="text-center">Dành cho NHÂN VIÊN bán hàng</h4>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group text-center">
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Tài khoản" })
+                            @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group text-center">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Mật khẩu" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group text-center">
+                            <input type="submit" value="ĐĂNG NHẬP" class="btn btn-success" />
+                        </div>
+                    }
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

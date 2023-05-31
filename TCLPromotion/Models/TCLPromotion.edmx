@@ -1,0 +1,874 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TCLPromotionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Code">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Model_size" Type="nvarchar" MaxLength="50" />
+          <Property Name="Price_topup" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Infor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Image_Order" Type="nvarchar(max)" />
+          <Property Name="Image_Product" Type="nvarchar(max)" />
+          <Property Name="Model_size" Type="nvarchar" MaxLength="50" />
+          <Property Name="Create_date" Type="datetime" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="MAX_ACTIVE" Type="int" />
+        </EntityType>
+        <EntityType Name="Brandname">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="500" />
+          <Property Name="Message" Type="nvarchar" MaxLength="500" />
+          <Property Name="Createdate" Type="datetime" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="500" />
+          <Property Name="PhoneUse" Type="nvarchar" MaxLength="500" />
+          <Property Name="ChangePeople" Type="nvarchar" MaxLength="500" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="Email" Type="nvarchar" MaxLength="500" />
+          <Property Name="CCCD" Type="nvarchar" MaxLength="500" />
+          <Property Name="Cate" Type="int" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Createdate" Type="datetime" />
+          <Property Name="Buydate" Type="datetime" />
+          <Property Name="BuyAdr" Type="nvarchar" MaxLength="500" />
+          <Property Name="PRODUCT" Type="nvarchar" MaxLength="500" />
+          <Property Name="SERIAL" Type="nvarchar" MaxLength="500" />
+          <Property Name="MODEL" Type="nvarchar" MaxLength="500" />
+          <Property Name="IMEI" Type="nvarchar" MaxLength="500" />
+          <Property Name="INVOICE" Type="nvarchar" MaxLength="500" />
+          <Property Name="SIZE" Type="nvarchar" MaxLength="500" />
+          <Property Name="PAYMENT" Type="nvarchar" MaxLength="500" />
+          <Property Name="VOUCHER" Type="nvarchar" MaxLength="500" />
+          <Property Name="NVCH" Type="nvarchar" MaxLength="256" />
+          <Property Name="TOPUP" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer3004">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Agent" Type="nvarchar" MaxLength="256" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Activedate" Type="datetime" />
+          <Property Name="CusName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Size" Type="nvarchar" MaxLength="100" />
+          <Property Name="Model" Type="varchar" MaxLength="50" />
+          <Property Name="CMND" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KeyStore">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Province" Type="nvarchar" MaxLength="500" />
+          <Property Name="Store" Type="nvarchar" MaxLength="500" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="LogTopup">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CusID" Type="bigint" />
+          <Property Name="Amount" Type="int" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="500" />
+          <Property Name="Provider" Type="nvarchar" MaxLength="500" />
+          <Property Name="Createdate" Type="datetime" />
+          <Property Name="Result" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="MADUTHUONG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="Activedate" Type="datetime" />
+          <Property Name="PhoneActive" Type="nvarchar" MaxLength="50" />
+          <Property Name="Payment" Type="nvarchar" MaxLength="50" />
+          <Property Name="IDCusNew" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Voucher">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CODE" Type="nvarchar" MaxLength="500" />
+          <Property Name="Type" Type="int" />
+          <Property Name="Createdate" Type="datetime" />
+          <Property Name="Activedate" Type="datetime" />
+          <Property Name="Activeby" Type="nvarchar" MaxLength="500" />
+          <Property Name="Sendby" Type="nvarchar" MaxLength="500" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Usedate" Type="datetime" />
+          <Property Name="Cusname" Type="nvarchar" MaxLength="500" />
+          <Property Name="CCCD" Type="nvarchar" MaxLength="500" />
+          <Property Name="Usephone" Type="nvarchar" MaxLength="500" />
+          <Property Name="MODEL" Type="nvarchar" MaxLength="500" />
+          <Property Name="SIZE" Type="nvarchar" MaxLength="500" />
+          <Property Name="Agent" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="VOUCHER_API">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CODE" Type="nvarchar" MaxLength="500" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="Createdate" Type="datetime" />
+          <Property Name="Activedate" Type="datetime" />
+          <Property Name="Activeby" Type="nvarchar" MaxLength="500" />
+          <Property Name="Sendby" Type="nvarchar" MaxLength="500" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Usedate" Type="datetime" />
+          <Property Name="Cusname" Type="nvarchar" MaxLength="500" />
+          <Property Name="CCCD" Type="nvarchar" MaxLength="500" />
+          <Property Name="Usephone" Type="nvarchar" MaxLength="500" />
+          <Property Name="MODEL" Type="nvarchar" MaxLength="500" />
+          <Property Name="SIZE" Type="nvarchar" MaxLength="500" />
+          <Property Name="Agent" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Voucher3004">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="Activedate" Type="datetime" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TCLPromotionModelStoreContainer">
+          <EntitySet Name="Code" EntityType="Self.Code" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="Infor" EntityType="Self.Infor" Schema="db_owner" store:Type="Tables" />
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Brandname" EntityType="Self.Brandname" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer3004" EntityType="Self.Customer3004" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KeyStore" EntityType="Self.KeyStore" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogTopup" EntityType="Self.LogTopup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MADUTHUONG" EntityType="Self.MADUTHUONG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Voucher" EntityType="Self.Voucher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VOUCHER_API" EntityType="Self.VOUCHER_API" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Voucher3004" EntityType="Self.Voucher3004" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TCLPromotionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TCLPromotionEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="TCLPromotionModel.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="TCLPromotionModel.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="TCLPromotionModel.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="TCLPromotionModel.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="TCLPromotionModel.AspNetUser" />
+          <EntitySet Name="Brandnames" EntityType="TCLPromotionModel.Brandname" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="TCLPromotionModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="TCLPromotionModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="TCLPromotionModel.AspNetUserRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="KeyStores" EntityType="TCLPromotionModel.KeyStore" />
+          <EntitySet Name="Vouchers" EntityType="TCLPromotionModel.Voucher" />
+          <EntitySet Name="VOUCHER_API" EntityType="TCLPromotionModel.VOUCHER_API" />
+          <EntitySet Name="MADUTHUONGs" EntityType="TCLPromotionModel.MADUTHUONG" />
+          <EntitySet Name="Customers" EntityType="TCLPromotionModel.Customer" />
+          <EntitySet Name="LogTopups" EntityType="TCLPromotionModel.LogTopup" />
+          <EntitySet Name="Customer3004" EntityType="TCLPromotionModel.Customer3004" />
+          <EntitySet Name="Voucher3004" EntityType="TCLPromotionModel.Voucher3004" />
+          <EntitySet Name="Codes" EntityType="TCLPromotionModel.Code" />
+          <EntitySet Name="Infors" EntityType="TCLPromotionModel.Infor" />
+        </EntityContainer>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="TCLPromotionModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="TCLPromotionModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="TCLPromotionModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="TCLPromotionModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="TCLPromotionModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+          <NavigationProperty Name="AspNetRoles" Relationship="TCLPromotionModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+          <Property Name="MAX_ACTIVE" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Brandname">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Phone" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Createdate" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="TCLPromotionModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="TCLPromotionModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="TCLPromotionModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="TCLPromotionModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="TCLPromotionModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="TCLPromotionModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityType Name="KeyStore">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Province" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Store" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Voucher">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="Createdate" Type="DateTime" Precision="3" />
+          <Property Name="Activedate" Type="DateTime" Precision="3" />
+          <Property Name="Activeby" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Sendby" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Usedate" Type="DateTime" Precision="3" />
+          <Property Name="Cusname" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CCCD" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Usephone" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MODEL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SIZE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Agent" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="VOUCHER_API">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="Createdate" Type="DateTime" Precision="3" />
+          <Property Name="Activedate" Type="DateTime" Precision="3" />
+          <Property Name="Activeby" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Sendby" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Usedate" Type="DateTime" Precision="3" />
+          <Property Name="Cusname" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CCCD" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Usephone" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MODEL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SIZE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Agent" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MADUTHUONG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="Activedate" Type="DateTime" Precision="3" />
+          <Property Name="PhoneActive" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Payment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IDCusNew" Type="Int64" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneUse" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ChangePeople" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CCCD" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Cate" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Createdate" Type="DateTime" Precision="3" />
+          <Property Name="Buydate" Type="DateTime" Precision="3" />
+          <Property Name="BuyAdr" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PRODUCT" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SERIAL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MODEL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IMEI" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="INVOICE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SIZE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PAYMENT" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="VOUCHER" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="NVCH" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="TOPUP" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LogTopup">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CusID" Type="Int64" />
+          <Property Name="Amount" Type="Int32" />
+          <Property Name="Phone" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Provider" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Createdate" Type="DateTime" Precision="3" />
+          <Property Name="Result" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Customer3004">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Agent" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Activedate" Type="DateTime" Precision="3" />
+          <Property Name="CusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Size" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CMND" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Voucher3004">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="Activedate" Type="DateTime" Precision="3" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Code">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Model_size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Price_topup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Infor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Image_Order" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image_Product" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Model_size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Create_date" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TCLPromotionModelStoreContainer" CdmEntityContainer="TCLPromotionEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="TCLPromotionModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="TCLPromotionModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="TCLPromotionModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="TCLPromotionModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="TCLPromotionModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="MAX_ACTIVE" ColumnName="MAX_ACTIVE" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Brandnames">
+            <EntityTypeMapping TypeName="TCLPromotionModel.Brandname">
+              <MappingFragment StoreEntitySet="Brandname">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Createdate" ColumnName="Createdate" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="TCLPromotionModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUser">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="KeyStores">
+            <EntityTypeMapping TypeName="TCLPromotionModel.KeyStore">
+              <MappingFragment StoreEntitySet="KeyStore">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Store" ColumnName="Store" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vouchers">
+            <EntityTypeMapping TypeName="TCLPromotionModel.Voucher">
+              <MappingFragment StoreEntitySet="Voucher">
+                <ScalarProperty Name="Agent" ColumnName="Agent" />
+                <ScalarProperty Name="SIZE" ColumnName="SIZE" />
+                <ScalarProperty Name="MODEL" ColumnName="MODEL" />
+                <ScalarProperty Name="Usephone" ColumnName="Usephone" />
+                <ScalarProperty Name="CCCD" ColumnName="CCCD" />
+                <ScalarProperty Name="Cusname" ColumnName="Cusname" />
+                <ScalarProperty Name="Usedate" ColumnName="Usedate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Sendby" ColumnName="Sendby" />
+                <ScalarProperty Name="Activeby" ColumnName="Activeby" />
+                <ScalarProperty Name="Activedate" ColumnName="Activedate" />
+                <ScalarProperty Name="Createdate" ColumnName="Createdate" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VOUCHER_API">
+            <EntityTypeMapping TypeName="TCLPromotionModel.VOUCHER_API">
+              <MappingFragment StoreEntitySet="VOUCHER_API">
+                <ScalarProperty Name="Agent" ColumnName="Agent" />
+                <ScalarProperty Name="SIZE" ColumnName="SIZE" />
+                <ScalarProperty Name="MODEL" ColumnName="MODEL" />
+                <ScalarProperty Name="Usephone" ColumnName="Usephone" />
+                <ScalarProperty Name="CCCD" ColumnName="CCCD" />
+                <ScalarProperty Name="Cusname" ColumnName="Cusname" />
+                <ScalarProperty Name="Usedate" ColumnName="Usedate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Sendby" ColumnName="Sendby" />
+                <ScalarProperty Name="Activeby" ColumnName="Activeby" />
+                <ScalarProperty Name="Activedate" ColumnName="Activedate" />
+                <ScalarProperty Name="Createdate" ColumnName="Createdate" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MADUTHUONGs">
+            <EntityTypeMapping TypeName="TCLPromotionModel.MADUTHUONG">
+              <MappingFragment StoreEntitySet="MADUTHUONG">
+                <ScalarProperty Name="IDCusNew" ColumnName="IDCusNew" />
+                <ScalarProperty Name="Payment" ColumnName="Payment" />
+                <ScalarProperty Name="PhoneActive" ColumnName="PhoneActive" />
+                <ScalarProperty Name="Activedate" ColumnName="Activedate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="TCLPromotionModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="TOPUP" ColumnName="TOPUP" />
+                <ScalarProperty Name="NVCH" ColumnName="NVCH" />
+                <ScalarProperty Name="VOUCHER" ColumnName="VOUCHER" />
+                <ScalarProperty Name="PAYMENT" ColumnName="PAYMENT" />
+                <ScalarProperty Name="SIZE" ColumnName="SIZE" />
+                <ScalarProperty Name="INVOICE" ColumnName="INVOICE" />
+                <ScalarProperty Name="IMEI" ColumnName="IMEI" />
+                <ScalarProperty Name="MODEL" ColumnName="MODEL" />
+                <ScalarProperty Name="SERIAL" ColumnName="SERIAL" />
+                <ScalarProperty Name="PRODUCT" ColumnName="PRODUCT" />
+                <ScalarProperty Name="BuyAdr" ColumnName="BuyAdr" />
+                <ScalarProperty Name="Buydate" ColumnName="Buydate" />
+                <ScalarProperty Name="Createdate" ColumnName="Createdate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Cate" ColumnName="Cate" />
+                <ScalarProperty Name="CCCD" ColumnName="CCCD" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ChangePeople" ColumnName="ChangePeople" />
+                <ScalarProperty Name="PhoneUse" ColumnName="PhoneUse" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogTopups">
+            <EntityTypeMapping TypeName="TCLPromotionModel.LogTopup">
+              <MappingFragment StoreEntitySet="LogTopup">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="Createdate" ColumnName="Createdate" />
+                <ScalarProperty Name="Provider" ColumnName="Provider" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="CusID" ColumnName="CusID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customer3004">
+            <EntityTypeMapping TypeName="TCLPromotionModel.Customer3004">
+              <MappingFragment StoreEntitySet="Customer3004">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CMND" ColumnName="CMND" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="CusName" ColumnName="CusName" />
+                <ScalarProperty Name="Activedate" ColumnName="Activedate" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Agent" ColumnName="Agent" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Voucher3004">
+            <EntityTypeMapping TypeName="TCLPromotionModel.Voucher3004">
+              <MappingFragment StoreEntitySet="Voucher3004">
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Activedate" ColumnName="Activedate" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Codes">
+            <EntityTypeMapping TypeName="TCLPromotionModel.Code">
+              <MappingFragment StoreEntitySet="Code">
+                <ScalarProperty Name="Price_topup" ColumnName="Price_topup" />
+                <ScalarProperty Name="Model_size" ColumnName="Model_size" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Infors">
+            <EntityTypeMapping TypeName="TCLPromotionModel.Infor">
+              <MappingFragment StoreEntitySet="Infor">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Create_date" ColumnName="Create_date" />
+                <ScalarProperty Name="Model_size" ColumnName="Model_size" />
+                <ScalarProperty Name="Image_Product" ColumnName="Image_Product" />
+                <ScalarProperty Name="Image_Order" ColumnName="Image_Order" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

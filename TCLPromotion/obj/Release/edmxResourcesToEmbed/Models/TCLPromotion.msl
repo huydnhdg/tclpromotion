@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TCLPromotionModelStoreContainer" CdmEntityContainer="TCLPromotionEntities">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="TCLPromotionModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="TCLPromotionModel.AspNetRole">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="TCLPromotionModel.AspNetUserClaim">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="TCLPromotionModel.AspNetUserLogin">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="TCLPromotionModel.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="MAX_ACTIVE" ColumnName="MAX_ACTIVE" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Brandnames">
+      <EntityTypeMapping TypeName="TCLPromotionModel.Brandname">
+        <MappingFragment StoreEntitySet="Brandname">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Createdate" ColumnName="Createdate" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="TCLPromotionModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetUser">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="AspNetRole">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="KeyStores">
+      <EntityTypeMapping TypeName="TCLPromotionModel.KeyStore">
+        <MappingFragment StoreEntitySet="KeyStore">
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Store" ColumnName="Store" />
+          <ScalarProperty Name="Province" ColumnName="Province" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vouchers">
+      <EntityTypeMapping TypeName="TCLPromotionModel.Voucher">
+        <MappingFragment StoreEntitySet="Voucher">
+          <ScalarProperty Name="Agent" ColumnName="Agent" />
+          <ScalarProperty Name="SIZE" ColumnName="SIZE" />
+          <ScalarProperty Name="MODEL" ColumnName="MODEL" />
+          <ScalarProperty Name="Usephone" ColumnName="Usephone" />
+          <ScalarProperty Name="CCCD" ColumnName="CCCD" />
+          <ScalarProperty Name="Cusname" ColumnName="Cusname" />
+          <ScalarProperty Name="Usedate" ColumnName="Usedate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Sendby" ColumnName="Sendby" />
+          <ScalarProperty Name="Activeby" ColumnName="Activeby" />
+          <ScalarProperty Name="Activedate" ColumnName="Activedate" />
+          <ScalarProperty Name="Createdate" ColumnName="Createdate" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VOUCHER_API">
+      <EntityTypeMapping TypeName="TCLPromotionModel.VOUCHER_API">
+        <MappingFragment StoreEntitySet="VOUCHER_API">
+          <ScalarProperty Name="Agent" ColumnName="Agent" />
+          <ScalarProperty Name="SIZE" ColumnName="SIZE" />
+          <ScalarProperty Name="MODEL" ColumnName="MODEL" />
+          <ScalarProperty Name="Usephone" ColumnName="Usephone" />
+          <ScalarProperty Name="CCCD" ColumnName="CCCD" />
+          <ScalarProperty Name="Cusname" ColumnName="Cusname" />
+          <ScalarProperty Name="Usedate" ColumnName="Usedate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Sendby" ColumnName="Sendby" />
+          <ScalarProperty Name="Activeby" ColumnName="Activeby" />
+          <ScalarProperty Name="Activedate" ColumnName="Activedate" />
+          <ScalarProperty Name="Createdate" ColumnName="Createdate" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MADUTHUONGs">
+      <EntityTypeMapping TypeName="TCLPromotionModel.MADUTHUONG">
+        <MappingFragment StoreEntitySet="MADUTHUONG">
+          <ScalarProperty Name="IDCusNew" ColumnName="IDCusNew" />
+          <ScalarProperty Name="Payment" ColumnName="Payment" />
+          <ScalarProperty Name="PhoneActive" ColumnName="PhoneActive" />
+          <ScalarProperty Name="Activedate" ColumnName="Activedate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="TCLPromotionModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="TOPUP" ColumnName="TOPUP" />
+          <ScalarProperty Name="NVCH" ColumnName="NVCH" />
+          <ScalarProperty Name="VOUCHER" ColumnName="VOUCHER" />
+          <ScalarProperty Name="PAYMENT" ColumnName="PAYMENT" />
+          <ScalarProperty Name="SIZE" ColumnName="SIZE" />
+          <ScalarProperty Name="INVOICE" ColumnName="INVOICE" />
+          <ScalarProperty Name="IMEI" ColumnName="IMEI" />
+          <ScalarProperty Name="MODEL" ColumnName="MODEL" />
+          <ScalarProperty Name="SERIAL" ColumnName="SERIAL" />
+          <ScalarProperty Name="PRODUCT" ColumnName="PRODUCT" />
+          <ScalarProperty Name="BuyAdr" ColumnName="BuyAdr" />
+          <ScalarProperty Name="Buydate" ColumnName="Buydate" />
+          <ScalarProperty Name="Createdate" ColumnName="Createdate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Cate" ColumnName="Cate" />
+          <ScalarProperty Name="CCCD" ColumnName="CCCD" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="ChangePeople" ColumnName="ChangePeople" />
+          <ScalarProperty Name="PhoneUse" ColumnName="PhoneUse" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LogTopups">
+      <EntityTypeMapping TypeName="TCLPromotionModel.LogTopup">
+        <MappingFragment StoreEntitySet="LogTopup">
+          <ScalarProperty Name="Result" ColumnName="Result" />
+          <ScalarProperty Name="Createdate" ColumnName="Createdate" />
+          <ScalarProperty Name="Provider" ColumnName="Provider" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="CusID" ColumnName="CusID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customer3004">
+      <EntityTypeMapping TypeName="TCLPromotionModel.Customer3004">
+        <MappingFragment StoreEntitySet="Customer3004">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CMND" ColumnName="CMND" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="CusName" ColumnName="CusName" />
+          <ScalarProperty Name="Activedate" ColumnName="Activedate" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Agent" ColumnName="Agent" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Voucher3004">
+      <EntityTypeMapping TypeName="TCLPromotionModel.Voucher3004">
+        <MappingFragment StoreEntitySet="Voucher3004">
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Activedate" ColumnName="Activedate" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Codes">
+      <EntityTypeMapping TypeName="TCLPromotionModel.Code">
+        <MappingFragment StoreEntitySet="Code">
+          <ScalarProperty Name="Price_topup" ColumnName="Price_topup" />
+          <ScalarProperty Name="Model_size" ColumnName="Model_size" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Infors">
+      <EntityTypeMapping TypeName="TCLPromotionModel.Infor">
+        <MappingFragment StoreEntitySet="Infor">
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Create_date" ColumnName="Create_date" />
+          <ScalarProperty Name="Model_size" ColumnName="Model_size" />
+          <ScalarProperty Name="Image_Product" ColumnName="Image_Product" />
+          <ScalarProperty Name="Image_Order" ColumnName="Image_Order" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

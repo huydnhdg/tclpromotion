@@ -1,0 +1,436 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutSendVoucher.cshtml";
+    int index = 0;
+}
+
+<div class="main">
+    <img src="~/Content/Voucher/1920x1080(x3)C645_Q646.jpg" class="img-responsive" id="img-pc" />
+    <img src="~/Content/Voucher/750x2000bannerMBC645_Q646.jpg" class="img-responsive" id="img-mb" style="display:none" />
+    <div class="main-box">
+        <div class="padding-main">
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class=" col-md-6 text-center">
+                    <div class="form-main">
+                        <div class="form-content">
+                            <h2 style="color:black">ĐIỀN THÔNG TIN ĐỂ NHẬN QUÀ</h2>
+                            @using (Html.BeginForm("Confirm", "ExchangeVoucher", FormMethod.Post, new { id = "formmethod", enctype = "multipart/form-data" }))
+                            {<p style="color:black">
+                                    Vui lòng nhập đủ thông tin dưới đây để nhận quà khi mua sản phẩm TV TCL QLED 4K TV C645 tại các cửa hàng áp dụng
+                                    <a href="javascript:void(0)" title="danh sách cửa hàng" onclick="Store()">
+                                        (danh sách tại đây)
+                                    </a>
+
+
+                                </p>
+                                <p style="font-size:12px; color:black"><i>* Lưu ý :Số lượng quà tặng có hạn, chương trình có thể kết thúc sớm hơn khi hết quà.</i></p>
+                                <div class="form-group">
+                                    <input class="form-control" onblur="checkName(this)" id="name" name="name" placeholder="Họ và tên" required />
+                                    <label style="color: #D32027; display: none; font-style: italic;" id="name_error"></label>
+                                    <label style="color: green; display: none; font-style: italic;" id="name_normal"></label>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" onblur="checkPhone(this)" id="phone" name="phone" placeholder="Số điện thoại" required />
+                                    <label style="color: #D32027; display: none; font-style: italic;" id="phone_error"></label>
+                                    <label style="color: green; display: none; font-style: italic;" id="phone_normal"></label>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" onblur="checkAdd(this)" id="address" name="address" placeholder="Địa chỉ..." required />
+                                    <label style="color: #D32027; display: none; font-style: italic;" id="address_error"></label>
+                                    <label style="color: green; display: none; font-style: italic;" id="address_normal"></label>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control" id="model" name="model" required>
+                                        <option value="">--Model--</option>
+                                        @foreach (var item in ViewBag.code)
+                                        {
+                                            <option>@item.Model_size</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group ">
+                                    <span class="note" style=" text-align: left !important; color: black"><i>*Hình ảnh hóa đơn GTGT</i></span>
+                                    <input type="file" multiple id="ImageOrder" name="ImageOrder" class="form-control" required />
+                                </div>
+
+
+                                <div class="form-group">
+                                    <a title="" href="javascript:void(0)" onclick="Rules()">Chi tiết thể lệ chương trình</a><br />
+                                    <div style="margin-left:25%;" id="g-recaptcha" data-callback="recaptchaCallback"></div>
+                                    <button type="submit" id="btnsubmit"  class="btn btn-success"> ĐĂNG KÝ NHẬN QUÀ</button><br />
+                                    <img src="~/content/image/ajax-loader.gif" class="loader" id="loader" style="display:none;" /><br />
+                                    <p class="text-warning" id="txt-result"></p>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div id="Rules" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="button">
+            <button type="button" class="close" data-dismiss="modal" data-backdrop="static" data-keyboard="false">&times;</button>
+        </div>
+        <div class="modal-content">
+            <div class="modal-body">
+                <p style="font-size: 21px; text-align:center"><b>THỂ LỆ CHƯƠNG TRÌNH</b></p>
+                <br />
+                <p><b>1. Tên chương trình: Ưu đãi độc quyền khi mua TCL QLED 4K TV C645 </b></p>
+                <p><b>2. Hình thức khuyến mại:</b> Khách hàng mua sản phẩm chỉ định được tặng kèm quà tặng</p>
+                <p><b>3. Thời gian khuyến mại: </b>Từ 01.04.2023 đến 02.05.2023</p>
+                <p><b>4. Hàng hóa dùng để khuyến mại:</b> Bộ loa thanh S522W</p>
+                <p><b>5. Phạm vi khuyến mại:  </b> Toàn quốc</p>
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Model Áp Dụng</th>
+                            <th>Quà tặng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>75C645</td>
+                            <td rowspan="5" align="center" style="padding-top:10%">Bộ Loa thanh S522W</td>
+
+</tr>
+                        <tr>
+                            <td>2</td>
+                            <td>65C645</td>
+
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>55C645</td>
+
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>65Q646</td>
+
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>55Q646</td>
+
+                        </tr>
+                      
+                    </tbody>
+                </table>
+                <p>
+                    <b>*Quy trình đổi quà như sau:</b>
+                    <ul>
+                        <li> Khách hàng sau khi mua sản phẩm Tivi TCL thực hiện truy cập vào hệ thống đổi quà của TCL tại địa chỉ http://khuyenmaitcl.tcl.com và điền đầy đủ thông tin theo hướng dẫn.</li>
+                        <li> Thời hạn khách hàng điền thông tin đăng ký nhận quà trên https://khuyenmaitcl.tcl.com chậm nhất đến hết ngày: 10/05/2023.</li>
+                        <li> Quà tặng sẽ được gửi đến địa chỉ đăng kí nhận thưởng bắt đầu từ ngày 15/04/2023 đến hết ngày 30/05/2023.</li>
+                        <li>Thời gian trả quà có thể kéo dài đến hết ngày 30/05/2023</li>
+                    </ul>
+                </p>
+                <p><b>6. Nội dung chi tiết thể lệ chương trình khuyến mại</b></p>
+                <p><b>6.1 Cách thức tham dự chương trình khuyến mại:</b></p>
+                <p>Khách hàng sau khi mua sản phẩm Tivi TCL vui lòng thực hiện các bước sau:</p>
+                <p>Bước 1: Truy cập vào trang - http://khuyenmaitcl.tcl.com và điền đầy đủ thông tin theo yêu cầu.</p>
+                <p>Bước 2: Trong vòng 03-07 ngày làm việc (không bao gồm Thứ 7, Chủ Nhật và Ngày Lễ), bộ phận chăm sóc khách hàng sẽ gọi điện xác nhận thông tin và xử lý yêu cầu.</p>
+                <ul>
+                    <li>Thông tin hợp lệ: Khách hàng nhận được thông báo qua tin nhắn về quà tặng.</li>
+                    <li>Thông tin không hợp lệ: Khách hàng nhận được thông báo từ chối do thông tin không hợp lệ.</li>
+
+                </ul>
+                <b>*Lưu ý:</b>
+                <ul>
+                    <li>Truy cập vào trang - https://khuyenmaitcl.tcl.com và điền đầy đủ thông tin theo yêu cầu.</li>
+                    <li>Thời hạn khách hàng phải gửi thông tin: hết ngày 10/05/2023 (Áp dụng cho khách hàng mua hàng từ ngày 01/04/2023 – 02/05/2023).</li>
+                    <li>Sau ngày 10/05/2023,TCL sẽ không tiếp nhận thông tin bằng bất kỳ hình thức nào khác. Mọi thắc mắc liên quan đến chương trình khuyến mại, khách hàng liên hệ Hotline 028 3836 6111 (nhánh: 498) để được hướng dẫn và giải đáp.</li>
+                </ul>
+                <p><b>6.2 Quy định về việc xác nhận tính hợp lệ của thông tin:</b></p>
+                <p>Thông tin nhận quà khuyến mại phải thỏa mãn các điều kiện sau:</p>
+                <ul>
+                    <li>Thông tin cá nhân: Họ tên, Số điện thoại.</li>
+                    <li>Thông tin đơn hàng: hình chụp hóa đơn mua hàng (hóa đơn thuế VAT).</li>
+                    <li>Địa chỉ nhận thưởng. (Lưu ý: thông tin này được TCL sử dụng để vận chuyển quà tặng cho khách hàng, nếu thông tin khách hàng đăng ký không chính xác, TCL không chịu trách nhiệm truy cứu hoặc tiếp nhận khiếu nại).</li>
+                </ul>
+                <p><b>7. Quy định:</b></p>
+                <ul>
+                    <li>Các hàng hóa dùng để khuyến mại không có giá trị quy đổi thành tiền mặt.</li>
+                    <li>Người tham gia đọc và hiểu rõ thể lệ tham dự, đồng ý và tuân theo bản thể lệ này do TCL đề ra.</li>
+                    <li>Thông tin khách hàng cung cấp sẽ được TCL sử dụng trong thời gian khuyến mại nhằm mục đích đổi thưởng cho khách hàng.</li>
+                    <li>Khách hàng phải có hóa đơn GTGT để đăng ký nhận quà trên trang http://khuyenmaitcl.tcl.com</li>
+                    <li>Trong trường hợp phát sinh tranh chấp, khiếu nại liên quan đến chương trình, TCL sẽ trực tiếp giải quyết và quyết định của TCL là kết quả cuối cùng. </li>
+                    <li>Trong trường hợp khách hàng có nhu cầu thay đổi thông tin nhận quà, khách hàng vui lòng liên hệ Hotline 028 3836 6111 (nhánh: 498) để được hướng dẫn.</li>
+                    <li>Mọi thắc mắc liên quan đến chương trình khuyến mại, khách hàng liên hệ Hotline 028 3836 6111 (nhánh: 498) để được hướng dẫn và giải đáp.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div id="Store" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="button">
+            <button type="button" class="close" data-dismiss="modal" data-backdrop="static" data-keyboard="false">&times;</button>
+        </div>
+        <div class="modal-content">
+            <div class="modal-body">
+                <p style="font-size: 21px; text-align:center"><b>DANH SÁCH CỬA HÀNG ÁP DỤNG</b></p>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            @*<th>Thành phố</th>*@
+                            <th>Tên cửa hàng</th>
+                            <th>Địa điểm</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.store)
+                        {
+                            index++;
+                            <tr>
+                                <td>@index</td>
+                                @*<td>@item.Province</td>*@
+                                <td>@item.Store</td>
+                                <td>@item.Address</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body{
+        background-color:#e1e1e1 !important;
+    }
+    .main {
+        font-size: 16px;
+        color: white;
+        position: relative;
+    }
+
+    h2 {
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .main-box {
+        width: 100%;
+        position: absolute;
+        z-index: 999;
+        top: 0;
+        position: fixed;
+    }
+
+    .padding-main {
+        padding-left: 5%;
+        padding-right: 5%;
+        margin: auto;
+    }
+
+    .form-content {
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+
+    .form-main {
+        margin-top: 20%;
+    }
+
+    .form-content {
+        /*border: 1px solid gray;*/
+        border-radius: 20px;
+        padding: 40px 5px;
+        background-color:#e1e1e1
+    }
+
+    form {
+        padding-top: 25px;
+    }
+
+    .modal-content {
+        border-radius: unset;
+        overflow-y: scroll;
+        height: 100vh;
+    }
+
+    .close {
+        color: #f67d7d;
+        opacity: 1;
+    }
+
+    a {
+        color: #002ab4;
+    }
+
+    .text-warning {
+        color: #f7241f;
+        font-weight: bold;
+    }
+
+    @@media(min-width: 1200px) {
+
+        
+    }
+
+    @@media(max-width: 1024px) {
+        #img-mb {
+            display: block !important;
+        }
+
+        #img-pc {
+            display: none !important;
+        }
+
+        .form-main {
+            margin-top: 180%;
+        }
+
+        .main-box {
+            position: absolute;
+        }
+
+        .main {
+            font-size: 13px;
+        }
+
+        h2 {
+            font-size: 18px;
+        }
+    }
+
+    @@media (min-width: 768px) {
+        .modal-dialog {
+            width: 840px;
+            margin: auto;
+        }
+    }
+    .note {
+     
+        font-size: 10px;
+        color: white;
+        margin-left:0px !important;
+    }
+</style>
+@section scripts{
+   <script>
+       function Rules() {
+           $('#Rules').modal('show');
+       }
+       function Store() {
+           $('#Store').modal('show');
+       }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#btnsubmit").click(function (e) {
+                //Serialize the form datas.
+                var valdata = $("#formmethod").serialize();
+                //to get alert popup
+
+                $.ajax({
+                    url: "/ExchangeVoucher/Index",
+                    type: "POST",
+                    dataType: 'json',
+                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                    data: valdata
+                });
+            });
+        });
+
+        function checkPhone(phone) {
+            var phone_string = phone.value;
+            var id = phone.id;
+            if (phone_string.length == 0) {
+                $('#' + id + '_normal').hide();
+                $('#' + id + '_error').show();
+                $('#' + id + '_error').html("Vui lòng nhập số điện thoại!");
+
+            } else {
+                if (phone_string.length < 10 || phone_string.length > 11) {
+                    $('#' + id + '_normal').hide();
+                    $('#' + id + '_error').show();
+                    $('#' + id + '_error').html("Vui lòng nhập đúng định dạng số điện thoại");
+
+                } else {
+                    if (phone_string.startsWith("0") && phone_string.length > 10) {
+                        $('#' + id + '_normal').hide();
+                        $('#' + id + '_error').show();
+                        $('#' + id + '_error').html("Vui lòng nhập đúng định dạng số điện thoại");
+
+                    } else {
+                        if (id == "phone1") {
+                            //getInfoByPhone(phone_string);
+                        }
+
+                        $('#' + id + '_error').hide();
+                        $('#' + id + '_error').html("");
+                        $('#' + id + '_error').hide();
+                    }
+                }
+            }
+        }
+
+        function checkName(name) {
+            var name_string = name.value;
+            var id = name.id;
+            var id = name.id;
+            if (name_string.length == 0) {
+                $('#' + id + '_normal').hide();
+                $('#' + id + '_error').show();
+                $('#' + id + '_error').html("Vui lòng nhập tên của bạn!");
+            }
+        }
+        function checkCode(model) {
+            var model_string = model.value;
+            var id = model.id;
+            if (model_string.length == 0) {
+                $('#' + id + '_normal').hide();
+                $('#' + id + '_error').show();
+                $('#' + id + '_error').html("Vui lòng nhập model của sản phẩm!");
+            }
+        }
+        function checkAdd(address) {
+            var model_string = address.value;
+            var id = address.id;
+            if (model_string.length == 0) {
+                $('#' + id + '_normal').hide();
+                $('#' + id + '_error').show();
+                $('#' + id + '_error').html("Vui lòng nhập địa chỉ!");
+            }
+        }
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+            async defer>
+
+    </script>
+    <script>
+        var onloadCallback = function () {
+            grecaptcha.render('g-recaptcha', {
+                'sitekey': '6LdRfn0lAAAAAHZWeDcFKk4w2rBMwakwCSDYm3FL'
+            });
+        };
+        var recaptchaCallback = function () {
+            let submit = document.getElementById('btnsubmit')
+            submit.classList.remove('disabled');
+        }
+        form = document.getElementById('formmethod');
+        form.addEventListener('submit', function (e) {
+            if (grecaptcha && grecaptcha.getResponse().length !== 0) {
+                this.submit();
+            } else {
+                alert('Please check captcha');
+            }
+            e.preventDefault();
+        })
+    </script>
+
+}

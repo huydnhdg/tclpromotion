@@ -1,0 +1,283 @@
+﻿@model TCLPromotion.Models.Customer
+@{
+    ViewBag.Title = "Game";
+}
+<a href="~/">
+    <img src="~/Content/Image/banner.jpg" class="img-responsive" />
+</a>
+
+<!-- Modal -->
+<div id="gameModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <input id="ID" value="@Model.ID" class="form-control" style="display:none" />
+                <div class="col-md-4 col-xs-4 hvr-wobble-vertical box-item">
+                    <div class="item-icon">
+                        <a href="#">
+                            <img src="~/Content/Icon/magic 1.png" class="img-responsive icon-game" />
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-4 hvr-wobble-vertical box-item">
+                    <div class="item-icon">
+                        <a href="#">
+                            <img src="~/Content/Icon/magic 2.png" class="img-responsive icon-game" />
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-4 hvr-wobble-vertical box-item">
+                    <div class="item-icon">
+                        <a href="#">
+                            <img src="~/Content/Icon/magic 3.png" class="img-responsive icon-game" />
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-4 hvr-wobble-vertical box-item">
+                    <div class="item-icon">
+                        <a href="#">
+                            <img src="~/Content/Icon/magic 4.png" class="img-responsive icon-game" />
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-4 hvr-wobble-vertical box-item">
+                    <div class="item-icon">
+                        <a href="#">
+                            <img src="~/Content/Icon/Mid Icon.png" class="img-responsive icon-game" />
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-4 hvr-wobble-vertical box-item">
+                    <div class="item-icon">
+                        <a href="#">
+                            <img src="~/Content/Icon/Spaceman 1.png" class="img-responsive icon-game" />
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-4 hvr-wobble-vertical box-item">
+                    <div class="item-icon">
+                        <a href="#">
+                            <img src="~/Content/Icon/Spaceman 2.png" class="img-responsive icon-game" />
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-4 hvr-wobble-vertical box-item">
+                    <div class="item-icon">
+                        <a href="#">
+                            <img src="~/Content/Icon/Spaceman 3.png" class="img-responsive icon-game" />
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-4 hvr-wobble-vertical box-item">
+                    <div class="item-icon">
+                        <a href="#">
+                            <img src="~/Content/Icon/Spaceman 4.png" class="img-responsive icon-game" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="resultModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center">THÔNG BÁO</h4>
+            </div>
+            <div class="modal-body">
+                <p id="lbMessage"></p>
+            </div>
+            <div class="modal-footer" style="text-align:center;">
+                <button type="button" class="btn btn-danger success">Thoát</button>
+                <button type="button" class="btn btn-success next">Nhận Voucher</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="voucherModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center">HOÀN THÀNH THÔNG TIN</h4>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/Trian/GetVoucher" id="formvoucher">
+                    <input class="form-control" type="text" id="CCCD" name="CCCD" required placeholder="CMND/CCCD" />
+                    <select class="form-control" id="Province" name="Province" required>
+                        <option value="">--Tỉnh/ Thành phố sinh sống--</option>
+                        <option value="An Giang">An Giang</option>
+                        <option value="Bà Rịa - Vũng Tàu">Bà Rịa - Vũng Tàu</option>
+                        <option value="Bắc Giang">Bắc Giang</option>
+                        <option value="Bắc Kạn">Bắc Kạn</option>
+                        <option value="Bạc Liêu">Bạc Liêu</option>
+                        <option value="Bắc Ninh">Bắc Ninh</option>
+                        <option value="Bến Tre">Bến Tre</option>
+                        <option value="Bình Định">Bình Định</option>
+                        <option value="Bình Dương">Bình Dương</option>
+                        <option value="Bình Phước">Bình Phước</option>
+                        <option value="Bình Thuận">Bình Thuận</option>
+                        <option value="Cà Mau">Cà Mau</option>
+                        <option value="Cần Thơ">Cần Thơ</option>
+                        <option value="Cao Bằng">Cao Bằng</option>
+                        <option value="Đà Nẵng">Đà Nẵng</option>
+                        <option value="Đắk Lắk">Đắk Lắk</option>
+                        <option value="Đắk Nông">Đắk Nông</option>
+                        <option value="Điện Biên">Điện Biên</option>
+                        <option value="Đồng Nai">Đồng Nai</option>
+                        <option value="Đồng Tháp">Đồng Tháp</option>
+                        <option value="Gia Lai">Gia Lai</option>
+                        <option value="Hà Giang">Hà Giang</option>
+                        <option value="Hà Nam">Hà Nam</option>
+                        <option value="Hà Nội">Hà Nội</option>
+                        <option value="Hà Tĩnh">Hà Tĩnh</option>
+                        <option value="Hải Dương">Hải Dương</option>
+                        <option value="Hải Phòng">Hải Phòng</option>
+                        <option value="Hậu Giang">Hậu Giang</option>
+                        <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                        <option value="Hòa Bình">Hòa Bình</option>
+                        <option value="Hưng Yên">Hưng Yên</option>
+                        <option value="Khánh Hòa">Khánh Hòa</option>
+                        <option value="Kiên Giang">Kiên Giang</option>
+                        <option value="Kon Tum">Kon Tum</option>
+                        <option value="Lai Châu">Lai Châu</option>
+                        <option value="Lâm Đồng">Lâm Đồng</option>
+                        <option value="Lạng Sơn">Lạng Sơn</option>
+                        <option value="Lào Cai">Lào Cai</option>
+                        <option value="Long An">Long An</option>
+                        <option value="Nam Định">Nam Định</option>
+                        <option value="Nghệ An">Nghệ An</option>
+                        <option value="Ninh Bình">Ninh Bình</option>
+                        <option value="Ninh Thuận">Ninh Thuận</option>
+                        <option value="Phú Thọ">Phú Thọ</option>
+                        <option value="Phú Yên">Phú Yên</option>
+                        <option value="Quảng Bình">Quảng Bình</option>
+                        <option value="Quảng Nam">Quảng Nam</option>
+                        <option value="Quảng Ngãi">Quảng Ngãi</option>
+                        <option value="Quảng Ninh">Quảng Ninh</option>
+                        <option value="Quảng Trị">Quảng Trị</option>
+                        <option value="Sóc Trăng">Sóc Trăng</option>
+                        <option value="Sơn La">Sơn La</option>
+                        <option value="Tây Ninh">Tây Ninh</option>
+                        <option value="Thái Bình">Thái Bình</option>
+                        <option value="Thái Nguyên">Thái Nguyên</option>
+                        <option value="Thanh Hóa">Thanh Hóa</option>
+                        <option value="Thừa Thiên Huế">Thừa Thiên Huế</option>
+                        <option value="Tiền Giang">Tiền Giang</option>
+                        <option value="Trà Vinh">Trà Vinh</option>
+                        <option value="Tuyên Quang">Tuyên Quang</option>
+                        <option value="Vĩnh Long">Vĩnh Long</option>
+                        <option value="Vĩnh Phúc">Vĩnh Phúc</option>
+                        <option value="Yên Bái">Yên Bái</option>
+                    </select>
+                    <div class="form-group">
+                        <div class="text-center">
+                            <p class="text-danger" id="lbErrVoucher"></p>
+                            <button type="button" class="btn btn-info" id="btnvoucher">Nhận Voucher</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $('#gameModal').modal('show');
+
+        $(".icon-game").click(function () {
+            var ID = $('#ID').val();
+            if (ID == "") {
+                $('#lbMessage').html('BAN KHONG CO LUOT NHAN THUONG. CHI TIET LIEN HE: 02838366111 (EXT: 498)');
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url: "/Trian/Payment",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "html",
+                    data: '{ID: "' + ID + '" }',
+                    success: function (response) {
+                        console.log(response);
+                        if (response == 1) {
+                            $('#lbMessage').html('(TCL VN) CHUC MUNG QUY KHACH NHAN DUOC MOT THE DIEN THOAI 100K. DONG THOI CAM ON QUY KHACH DA DONG HANH CUNG TCL VN TRONG SUOT THOI GIAN QUA. NHAN DIP KY NIEM 22 NAM, CTY GUI DEN QUY KHACH PHAN QUA TRI AN MOT VOUCHER TRI GIA 2,200,000 VND, QUY KHACH SU DUNG DE THANH TOAN TRU TIEN TRUC TIEP TREN HOA DON KHI MUA SAN PHAM CHI DINH CUA CT "TCL - 22 NAM DONG HANH CUNG VIET NAM". QUY KHACH CO NHU CAU SU DUNG VOUCHER. CHI TIET LIEN HE: 02838366111 (EXT: 498)');
+                        } else if (response == 2) {
+                            $('#lbMessage').html('(TCL VN) CHUC MUNG QUY KHACH NHAN DUOC MOT THE DIEN THOAI 200K. DONG THOI CAM ON QUY KHACH DA DONG HANH CUNG TCL VN TRONG SUOT THOI GIAN QUA. NHAN DIP KY NIEM 22 NAM, CTY GUI DEN QUY KHACH PHAN QUA TRI AN MOT VOUCHER TRI GIA 2,200,000 VND, QUY KHACH SU DUNG DE THANH TOAN TRU TIEN TRUC TIEP TREN HOA DON KHI MUA SAN PHAM CHI DINH CUA CT "TCL - 22 NAM DONG HANH CUNG VIET NAM". QUY KHACH CO NHU CAU SU DUNG VOUCHER. CHI TIET LIEN HE: 02838366111 (EXT: 498)');
+                        } else if (response == 0) {
+                            $('#lbMessage').html('(TCL VN) CHUC QUY KHACH MAY MAN LAN SAU. CAM ON QUY KHACH DA DONG HANH CUNG TCL VN TRONG SUOT THOI GIAN QUA. NHAN DIP KY NIEM 22 NAM, CTY GUI DEN QUY KHACH PHAN QUA TRI AN MOT VOUCHER TRI GIA 2,200,000 VND, QUY KHACH SU DUNG DE THANH TOAN TRU TIEN TRUC TIEP TREN HOA DON KHI MUA SAN PHAM CHI DINH CUA CT "TCL - 22 NAM DONG HANH CUNG VIET NAM". QUY KHACH CO NHU CAU SU DUNG VOUCHER . CHI TIET LIEN HE: 02838366111 (EXT: 498)');
+                        }
+                        if (response == -1) {
+                            $('#lbMessage').html('BAN DA HET LUOT NHAN THUONG. CHI TIET LIEN HE: 02838366111 (EXT: 498)');
+                            $('.modal-footer').css('display', 'none');
+                        }
+
+                        $('#gameModal').modal('hide');
+                        $('#resultModal').modal('show');
+                    }
+                });
+            }
+
+        });
+        $(".next").click(function () {
+            $('#gameModal').modal('hide');
+            $('#voucherModal').modal('show');
+            $('#resultModal').modal('hide');
+            $('.modal-footer').css('display', 'block');
+        });
+        $(".success").click(function () {
+            window.location.href = "/tri-an";
+        });
+        $('.close').click(function () {
+            window.location.href = "/tri-an";
+        });
+        $("#btnvoucher").click(function () {
+            var ID = $('#ID').val();
+            var CCCD = $('#CCCD').val();
+            var Province = $('#Province').val();
+
+            if (ID == "" || CCCD == "" || Province == "") {
+                $('#lbErrVoucher').html('DE NHAN VOUCHER BAN PHAI NHAP DU THONG TIN');
+            }
+            else if (CCCD.length != 9 && CCCD.length != 12) {
+                $('#lbErrVoucher').html('CMND/CCCD KHONG TON TAI. HAY KIEM TRA LAI');
+            }
+
+            else {
+                $.ajax({
+                    type: "POST",
+                    url: "/Trian/GetVoucher",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "html",
+                    data: '{ID: "' + ID + '",CCCD: "' + CCCD + '",Province: "' + Province + '" }',
+                    success: function (response) {
+                        console.log(response);
+                        if (response == -3) {
+                            $('#lbMessage').html('DA HET MA VOUCHER. CHI TIET LIEN HE: 02838366111 (EXT: 498)');
+                        }
+                        else if (response == -1) {
+                            $('#lbMessage').html('BAN DA HET LUOT NHAN VOUCHER. CHI TIET LIEN HE: 02838366111 (EXT: 498)');
+                        }
+                        else if (response == -2) {
+                            $('#lbMessage').html('BAN DA HET LUOT NHAN VOUCHER. CHI TIET LIEN HE: 02838366111 (EXT: 498)');
+                        }
+                        else {
+                            $('#lbMessage').html('(TCL VN) CHUC MUNG QUY KHACH DA DANG KY NHAN VOUCHER 2,200,000 VND THANH CONG TU CT "TCL - 22 NAM DONG HANH CUNG VIET NAM". SAU 48 TIENG CTY SE GUI MA VOUCHER DEN QUY KHACH. CHI TIET LIEN HE: 02838366111 (EXT: 498)');
+                        }
+                        $('.next').css('display', 'none');
+                        $('#resultModal').modal('show');
+                        $('#voucherModal').modal('hide');
+                    }
+                });
+            }
+        });
+    </script>
+}

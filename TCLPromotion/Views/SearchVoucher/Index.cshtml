@@ -1,0 +1,165 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutAgent.cshtml";
+    ViewBag.Title = "Index";
+}
+
+<div class="text-center">
+    <h3>KÍCH HOẠT MÃ GIẢM GIÁ</h3>
+    <p class="text-danger">(Nhập mã giảm giá để kiểm tra)</p>
+    <hr />
+    <form method="post" action="/Trian/Send" enctype="multipart/form-data" id="formpost">
+        <input class="form-control" type="text" id="CODE" name="CODE" required placeholder="AXYZ ..." />
+
+        <div class="form-group">
+            <div class="text-center">
+
+                <button type="button" class="btn btn-info" id="btnsubmit"><i class="fa fa-check" aria-hidden="true"></i> KÍCH HOẠT</button>
+                <img src="~/content/image/ajax-loader.gif" class="loader" id="loader" style="display:none;" />
+                <p class="text-danger" id="lbErrPost"></p>
+            </div>
+        </div>
+
+    </form>
+</div>
+<div id="useVoucher" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center">THÔNG TIN NGƯỜI MUA HÀNG</h4>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/SearchVoucher/UseVoucher" id="formuse">
+                    <input class="form-control hidden" type="text" id="uCODE" name="CODE" required />
+                    <input class="form-control" type="text" id="Cusname" name="Cusname" required placeholder="Họ tên" />
+                    <input class="form-control" type="text" id="CCCD" name="CCCD" required placeholder="CMND/CCCD" />
+                    <input class="form-control" type="text" id="Usephone" name="Usephone" required placeholder="Số điện thoại" />
+                    <select id="MODEL" class="form-control">
+                        <option value="">--Chọn Model--</option>
+                        <option value="C825">C825</option>
+                        <option value="C728">C728</option>
+                        <option value="C725">C725</option>
+                        <option value="C726">C726</option>
+                        <option value="Q726">Q726</option>
+                    </select>
+                    <select id="SIZE" class="form-control">
+                        <option value="">--Chọn Size--</option>
+                        <option value="50">50</option>
+                        <option value="55">55</option>
+                        <option value="65">65</option>
+                    </select>
+                    @*<input class="form-control" type="text" id="MODEL" name="MODEL" required placeholder="MODEL sản phẩm" />
+                        <input class="form-control" type="text" id="SIZE" name="SIZE" required placeholder="Size Kích thước" />*@
+                    <div class="text-center">
+                        <button id="btnUse" type="button" class="btn btn-success success">Hoàn thành</button>
+                        <img src="~/content/image/ajax-loader.gif" class="loader" id="uloader" style="display:none;margin:auto" />
+                    </div>
+                </form>
+                <p class="text-danger text-center" id="lbMessage"></p>
+            </div>
+            <div class="modal-footer" style="text-align:center;">
+                @*<button id="btnUse" type="submit" class="btn btn-success success">Hoàn thành</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="resultModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center">THÔNG BÁO</h4>
+            </div>
+            <div class="modal-body">
+                <p class="text-success text-center">MÃ ĐÃ KÍCH HOẠT THÀNH CÔNG</p>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $("#btnsubmit").click(function () {
+            $('#loader').css('display', 'inline-block');
+            var CODE = $('#CODE').val();
+            if (CODE == "") {
+                $('#lbErrPost').html('HAY NHAP MA GIAM GIA');
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url: "/SearchVoucher/Post",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "html",
+                    data: '{CODE: "' + CODE + '" }',
+                    success: function (response) {
+                        console.log(response);
+                        $('#loader').css('display', 'none');
+                        if (response == 1) {
+                            $('#lbErrPost').html('MA GIAM GIA HOP LE');
+                            $('#useVoucher').modal('show');
+                            $('#uCODE').val(CODE);
+                        } else if (response == 4) {
+                            $('#lbErrPost').html('MA GIAM GIA NAY DA QUA HAN SU DUNG ');
+                        }
+                        else if (response == 0) {
+                            $('#lbErrPost').html('MA GIAM GIA NAY CHUA DUOC GUI DI');
+                        }
+                        else if (response == 2) {
+                            $('#lbErrPost').html('MA GIAM GIA NAY DA DUOC SU DUNG');
+                        }
+                        else {
+                            $('#lbErrPost').html('MA GIAM GIA KHONG TON TAI');
+                        }
+
+                    }
+                });
+            }
+        })
+        $("#btnUse").click(function () {
+            $('#uloader').css('display', 'block');
+            var CODE = $('#uCODE').val();
+            var Cusname = $('#Cusname').val();
+            var CCCD = $('#CCCD').val();
+            var Usephone = $('#Usephone').val();
+            var MODEL = $('#MODEL').val();
+            var SIZE = $('#SIZE').val();
+            if (CODE == "" || Cusname == "" || CCCD == "" || Usephone == "" || SIZE == "" || MODEL == "") {
+                $('#lbMessage').html('TAT CA THONG TIN TREN LA BAT BUOC');
+                $('#uloader').css('display', 'none');
+            }
+            else if (CCCD.length != 9 && CCCD.length != 12) {
+                $('#lbErrVoucher').html('CMND/CCCD KHONG TON TAI. HAY KIEM TRA LAI');
+            }
+            else {
+                $.ajax({
+                    type: "POST",
+                    url: "/SearchVoucher/UseVoucher",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "html",
+                    data: '{CODE: "' + CODE + '",Cusname: "' + Cusname + '",CCCD: "' + CCCD + '",Usephone: "' + Usephone + '",MODEL: "' + MODEL + '",SIZE: "' + SIZE + '" }',
+                    success: function (response) {
+                        console.log(response);
+                        $('#uloader').css('display', 'none');
+                        if (response == -1) {
+                            $('#lbMessage').html('DA CO LOI XAY RA KHONG LUU DUOC');
+                        } else if (response == -2) {
+                            $('#lbMessage').html('MA GIAM GIA KHONG TON TAI HOAC DA BI XOA DI');
+                        } else if (response == -3) {
+                            $('#lbMessage').html('BAN DA HET LUOT NHAN MA KHUYEN MAI');
+                        }
+                        else {
+                            $('#useVoucher').modal('hide');
+                            $('#resultModal').modal('show');
+                        }
+
+                    }
+                });
+            }
+        })
+    </script>
+}

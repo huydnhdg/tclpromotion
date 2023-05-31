@@ -1,0 +1,48 @@
+﻿
+@model TCLPromotion.Models.Infor
+@{
+
+}
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Thông tin khách hàng</h3>
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("EditStatusConfirm", "Infors", new { area = "Admin" }))
+        {
+            @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+            <div class="form-group row">
+                <div class="col-md-2">Họ và tên</div>
+                @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control col-md-4", @placeholder = "", @readonly = "readonly" } })
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2">Số ĐT</div>
+                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control col-md-4", @placeholder = "", @readonly = "readonly" } })
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2">Địa chỉ</div>
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control col-md-4", @placeholder = "", @readonly = "readonly" } })
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">Tình trạng</div>
+                @Html.DropDownList("Status", new List<SelectListItem>{
+                                new SelectListItem { Value = "" , Text = "--Chọn--" },
+                                new SelectListItem { Value = "Chưa trả thưởng" , Text = "Chưa trả thưởng" },
+                                new SelectListItem { Value = "Đã trả thưởng" , Text = "Đã trả thưởng" },
+                                new SelectListItem { Value = "Lỗi thông tin" , Text = "Lỗi thông tin" },
+           }, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary"><i class="ti ti-check"></i> Lưu</button>
+                <button type="submit" class="btn btn-danger"><i class="ti ti-close"></i> Thoát</button>
+            </div>
+
+        </div>
+        }
+    </div>
+</div>

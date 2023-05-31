@@ -1,0 +1,84 @@
+﻿@model PagedList.IPagedList<TCLPromotion.Models.AspNetUser>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    var index = 0;
+}
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form>
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        <input class="form-control" name="textSearch" value="@ViewBag.textSearch" placeholder="Keyword" />
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit"><i class="fa fa-search" aria-hidden="true"></i> Tìm kiếm</button>
+                <a href="/admin/account/register" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm mới</a>
+            </form>
+        </div>
+    </div>
+    <table class="table table-hover table-striped" id="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Tên đăng nhập</th>
+                <th>Đại lý</th>
+                <th>KH Tối đa</th>
+                <th>#</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                index++;
+                <tr>
+                    <td style="display:none">@item.Id</td>
+                    <td>@index</td>
+                    <td>@item.UserName</td>
+                    <td>@item.PhoneNumber</td>
+                    <td>
+                        @if (item.MAX_ACTIVE != null)
+                        {
+                            <span>@item.MAX_ACTIVE lần</span>
+                        }
+                    </td>
+                    <td>
+                        <a href="/admin/user/edit/@item.Id" title="edit user"><i class="fa fa-pencil text-info" aria-hidden="true"></i></a>
+                        <a href="#" title="reset pass" class="reset"><i class="fa fa-chain-broken" aria-hidden="true"></i></a>
+                        <a href="/admin/user/delete/@item.Id" title="delete user"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+        <div class="showing">Showing @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</div>
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, textSearch = ViewBag.textSearch, from_date = ViewBag.from_date, to_date = ViewBag.to_date, chanel = ViewBag.chanel, status = ViewBag.status }))
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $("#table .reset").click(function () {
+            if (confirm("Bạn muốn reset về mật khẩu mặc định?")) {
+
+                var Id = $(this).closest("tr").find("td").eq(0).html();
+                $.ajax({
+                    type: "POST",
+                    url: "/Admin/Manage/SetPassword",
+                    data: '{Id: "' + Id + '" }',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "html",
+                    success: function (response) {
+                        alert("Mật khẩu hiện tại là tclvn@2021");
+                    }
+                });
+            }
+
+        });
+
+    </script>
+}

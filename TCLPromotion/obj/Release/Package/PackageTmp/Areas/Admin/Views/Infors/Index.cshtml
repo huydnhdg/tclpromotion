@@ -1,0 +1,105 @@
+﻿@model PagedList.IPagedList<TCLPromotion.Models.Infor>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var index = 0;
+}
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form>
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        <input class="form-control" name="textSearch" value="@ViewBag.textSearch" placeholder="Keyword" />
+                    </div>
+                    <div class="col-md-2">
+                        @Html.TextBox("from_date", ViewBag.from_date as string, new { @class = "form-control", @type = "date" })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.TextBox("to_date", ViewBag.to_date as string, new { @class = "form-control", @type = "date" })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.DropDownList("status", new List<SelectListItem>{
+                                new SelectListItem { Value = "" , Text = "--chọn--" },
+                                new SelectListItem { Value = "Chưa trả thưởng" , Text = "Chưa trả thưởng" },
+                                new SelectListItem { Value = "Đã trả thưởng" , Text = "Đã trả thưởng" },
+                                new SelectListItem { Value = "Lỗi thông tin" , Text = "Lỗi thông tin" },
+                   }, new { @class = "form-control" })
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i> Tìm kiếm</button>
+                <a href="/admin/infors/TCL_KHACHHANG" class="btn btn-success"><i class="fa fa-file-excel-o"></i> Xuất file</a>
+            </form>
+        </div>
+    </div>
+    <table class="table table-hover table-striped" id="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Họ và tên</th>
+                <th>Số điện thoại</th>
+                <th>Mã TV</th>
+                <th>Địa chỉ</th>
+                <th>Ảnh hóa đơn</th>
+                <th>Ngày nhập</th>
+                <th>Tình trạng</th>
+                <th>Message</th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                index++;
+
+                <tr>
+                    <td>@index</td>
+                    <td>@item.FullName</td>
+                    <td>@item.Phone</td>
+                    <td>@item.Model_size</td>
+                    <td>@item.Address</td>
+                    <td>
+                        <img src="@item.Image_Order" style="width:200px;"/>
+                    </td>
+                 
+                    <td>@item.Create_date</td>
+                    
+                    @if (@item.Status == "Đã trả thưởng")
+                    {
+                        <td style="color:red">
+                            @item.Status
+                        </td>
+                    }
+                    else if (@item.Status == "Lỗi thông tin")
+                    {
+                        <td style="color:darkgreen">
+                            @item.Status
+                        </td>
+                    }
+                    else
+                {
+                       <td>@item.Status</td>
+                }
+                    <td>@item.Message</td>
+
+                    <td>@Html.ActionLink("Sửa tình trạng", "EditStatus", new { id = item.Id  }) </td>
+
+                    @*<td>
+            @foreach (var img in words)
+            {
+                <img src="@img" width="100" />
+            }
+
+        </td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+        <div class="showing">Showing @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</div>
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, textSearch = ViewBag.textSearch, from_date = ViewBag.from_date, to_date = ViewBag.to_date, chanel = ViewBag.chanel, status = ViewBag.status }))
+    </div>
+</div>

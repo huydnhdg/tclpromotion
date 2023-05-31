@@ -1,0 +1,50 @@
+﻿@model PagedList.IPagedList<TCLPromotion.Models.KeyStore>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    var index = 0;
+}
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form>
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        <input class="form-control" name="textSearch" value="@ViewBag.textSearch" placeholder="Keyword" />
+                    </div>
+
+                </div>
+                <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i> Tìm kiếm</button>
+                <a href="/admin/keystore/uploadfile" class="btn btn-info"><i class="fa fa-upload"></i> Upload file</a>
+            </form>
+        </div>
+    </div>
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Cửa hàng</th>
+                <th>Thành phố</th>
+                <th>Địa chỉ</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                index++;
+                <tr>
+                    <td>@index</td>
+                    <td>@item.Store</td>
+                    <td>@item.Province</td>                    
+                    <td>@item.Address</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+        <div class="showing">Showing @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</div>
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, textSearch = ViewBag.textSearch }))
+    </div>
+</div>
+

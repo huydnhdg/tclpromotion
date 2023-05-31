@@ -1,0 +1,94 @@
+﻿@model PagedList.IPagedList<TCLPromotion.Models.Customer>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    var index = 0;
+}
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form>
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        <input class="form-control" name="textSearch" value="@ViewBag.textSearch" placeholder="Keyword" />
+                    </div>
+                    <div class="col-md-2">
+                        @Html.TextBox("from_date", ViewBag.from_date as string, new { @class = "form-control", @type = "date" })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.TextBox("to_date", ViewBag.to_date as string, new { @class = "form-control", @type = "date" })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.DropDownList("status", new List<SelectListItem>{
+                                new SelectListItem { Value = "" , Text = "--chọn--" },
+                                new SelectListItem { Value = "200" , Text = "200" },
+                                new SelectListItem { Value = "500" , Text = "500" },
+                                new SelectListItem { Value = "700" , Text = "700" },
+                                new SelectListItem { Value = "1000" , Text = "1000" },
+                   }, new { @class = "form-control" })
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i> Tìm kiếm</button>
+                <a href="/admin/customertrian122/TCL_KHACHHANG" class="btn btn-success"><i class="fa fa-file-excel-o"></i> Xuất file</a>
+            </form>
+        </div>
+    </div>
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Ngày tạo</th>
+                <th>Số điện thoại</th>
+                <th>Họ tên</th>
+                <th>Địa chỉ</th>
+                <th>Giải thưởng</th>
+                <th>Sản phẩm</th>
+                <th>Model</th>
+                <th>Size</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                index++;
+                string[] words = null;
+                if (!string.IsNullOrEmpty(item.INVOICE))
+                {
+                    words = item.INVOICE.Split('|');
+                }
+                <tr>
+                    <td>@index</td>
+                    <td>@item.Createdate</td>
+                    <td>@item.Phone</td>
+                    <td>@item.Name</td>
+                    <td>@item.Address</td>
+                    <td>
+                        @item.PAYMENT
+                    </td>
+                    <td>@item.IMEI</td>
+                    @*<td>@item.PRODUCT</td>
+                    <td>@item.MODEL</td>
+                    <td>@item.SIZE</td>*@
+                    <td>
+                        @if (words != null)
+                        {
+                            foreach (var img in words)
+                            {
+                                <img src="@img" width="100" />
+                            }
+                        }
+
+
+                    </td>
+                    <td>@item.SIZE</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+        <div class="showing">Showing @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</div>
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, textSearch = ViewBag.textSearch, from_date = ViewBag.from_date, to_date = ViewBag.to_date, chanel = ViewBag.chanel, status = ViewBag.status }))
+    </div>
+</div>
+

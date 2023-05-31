@@ -1,0 +1,66 @@
+﻿@model PagedList.IPagedList<TCLPromotion.Models.Code>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var index = 0;
+}
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form>
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        <input class="form-control" name="textSearch" value="@ViewBag.textSearch" placeholder="Keyword" />
+                    </div>
+                    @*<div class="col-md-2">
+            @Html.TextBox("from_date", ViewBag.from_date as string, new { @class = "form-control", @type = "date" })
+        </div>
+        <div class="col-md-2">
+            @Html.TextBox("to_date", ViewBag.to_date as string, new { @class = "form-control", @type = "date" })
+        </div>*@
+                    @*<div class="col-md-2">
+                        @Html.DropDownList("status", new List<SelectListItem>{
+                                new SelectListItem { Value = "" , Text = "--chọn--" },
+                                new SelectListItem { Value = "500000" , Text = "500000" },
+                                new SelectListItem { Value = "300000" , Text = "300000" },
+                                   new SelectListItem { Value = "200000" , Text = "200000" },
+                                      new SelectListItem { Value = "100000" , Text = "100000" },
+                   }, new { @class = "form-control" })
+                    </div>*@
+                </div>
+                <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i> Tìm kiếm</button>
+                <a href="/admin/codes/TCL_MA" class="btn btn-success"><i class="fa fa-file-excel-o"></i> Xuất file</a>
+            </form>
+        </div>
+    </div>
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Mã TV</th>
+                <th>Số tiền</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                index++;
+
+                <tr>
+                    <td>@index</td>
+                    <td>@item.Model_size</td>
+                    <td>@item.Price_topup</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+        <div class="showing">Showing @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</div>
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, textSearch = ViewBag.textSearch, from_date = ViewBag.from_date, to_date = ViewBag.to_date, chanel = ViewBag.chanel, status = ViewBag.status }))
+    </div>
+</div>
+

@@ -1,0 +1,134 @@
+﻿@model TCLPromotion.Models.Customer3004
+@{
+    ViewBag.Title = "Active";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="text-center">
+    <h3>ĐĂNG KÝ THÔNG TIN KHÁCH HÀNG</h3>
+    <p class="text-danger">(Nhập đầy đủ thông tin cho khách hàng)</p>
+    <hr />
+    <form method="post" enctype="multipart/form-data" id="formpost">
+        <input value="@Model.Code" class="form-control hidden" type="text" id="Code" name="Code" placeholder="Mã voucher" />
+        <input value="" class="form-control" type="text" id="CusName" name="CusName" placeholder="Tên khách hàng" />
+        <input value="" class="form-control" type="text" id="Phone" name="Phone" maxlength="10" placeholder="Số điện thoại" />
+        <input value="" class="form-control" type="text" id="CMND" name="CMND" placeholder="CMND/CCCD" />
+
+        <select class="form-control" id="Model" name="Model">
+            <option>--Chọn Model--</option>
+            <option value="C825">C825</option>
+            <option value="C728">C728</option>
+            <option value="C725">C725</option>
+            <option value="C726">C726</option>
+            <option value="Q726">Q726</option>
+            <option value="P735">P735</option>
+            <option value="P737">P737</option>
+        </select>
+        <select class="form-control" id="Size" name="Size">
+            <option>--Chọn Size--</option>
+            <option value="50">50 "</option>
+            <option value="55">55 "</option>
+            <option value="65">65 "</option>
+            <option value="70">70 "</option>
+        </select>
+        
+        <input value="@User.Identity.Name" class="form-control hidden" type="text" id="Agent" name="Agent" />
+
+        <div class="text-center" style="margin-top:15px;">
+            <button type="button" id="btnsendpost" class="btn btn-info">
+                <i class="fa fa-check" aria-hidden="true"></i> GỬI THÔNG TIN
+            </button>
+            <a href="/kich-hoat-30-04" class="btn btn-default">
+                <i class="fa fa-reply" aria-hidden="true"></i> TRANG CHỦ
+            </a>
+            <img src="~/content/image/ajax-loader.gif" class="loader" id="loader" style="display:none;" />
+            <p class="text-danger" id="lbErrPost"></p>
+        </div>
+    </form>
+</div>
+
+@section scripts{
+    <script>
+        $('#btnsendpost').click(function () {
+            alert("Chương trình đã kết thúc.");
+        });
+        //$('#btnsendpost').click(function () {
+        //    $('#loader').css('display', 'inline-block');
+        //    var Code = $('#Code').val();
+        //    var Agent = $('#Agent').val();
+        //    var CusName = $('#CusName').val();
+        //    var Phone = $('#Phone').val();
+        //    var Size = $('#Size').val();
+        //    var Model = $('#Model').val();
+        //    var CMND = $('#CMND').val();
+        //    if (Code == "") {
+        //        $('#loader').css('display', 'none');
+        //        $('#lbErrPost').html('CHUA NHAP MA DE KIEM TRA');
+        //    }
+        //    else if (Agent == "") {
+        //        $('#loader').css('display', 'none');
+        //        $('#lbErrPost').html('PHAI DANG NHAP DE THAM GIA CHUONG TRINH');
+        //    }
+        //    else if (CusName == "") {
+        //        $('#loader').css('display', 'none');
+        //        $('#lbErrPost').html('NHAP TEN KHACH HANG');
+        //    }
+        //    else if (Phone == "" || Phone.length < 10) {
+        //        $('#loader').css('display', 'none');
+        //        $('#lbErrPost').html('SO DIEN THOAI KHACH HANG KHONG DUNG');
+        //    }
+        //    else if (Size == "") {
+        //        $('#loader').css('display', 'none');
+        //        $('#lbErrPost').html('NHAP SIZE SAN PHAM');
+        //    }
+        //    else if (Model == "") {
+        //        $('#loader').css('display', 'none');
+        //        $('#lbErrPost').html('NHAP MODEL');
+        //    }
+        //    else if (CMND == "") {
+        //        $('#loader').css('display', 'none');
+        //        $('#lbErrPost').html('NHAP SO CMND HOAC CCCD');
+        //    }
+        //    else {
+
+        //        var formData = new FormData();
+        //        formData.append('Code', Code);
+        //        formData.append('Agent', Agent);
+        //        formData.append('CusName', CusName);
+        //        formData.append('Phone', Phone);
+        //        formData.append('Size', Size);
+        //        formData.append('Model', Model);
+        //        formData.append('CMND', CMND);
+
+        //        $.ajax({
+        //            type: 'POST',
+        //            url: '/kichhoat3004/PostCustomer',
+        //            data: formData,
+        //            processData: false,
+        //            contentType: false,
+        //            success: function (reponse) {
+        //                console.log(reponse);
+        //                if (reponse == -1) {
+        //                    $('#loader').css('display', 'none');
+        //                    $('#lbErrPost').html('MA VOUCHER DA DUOC KICH HOAT, HOAC KHONG TON TAI');
+        //                } else if (reponse == 1) {
+        //                    $('#loader').css('display', 'none');
+        //                    $('#lbErrPost').html('SO DIEN THOAI NAY DA KICH HOAT 2 LAN');
+        //                }
+        //                else {
+        //                    $('#loader').css('display', 'none');
+        //                    $('#lbErrPost').html('DA KICH HOAT THANH CONG');
+
+        //                    $('#lbErrPost').addClass('text-success');
+        //                    $('#lbErrPost').removeClass('text-danger');
+        //                }
+        //            }
+        //        });
+        //    }
+
+        //});
+    </script>
+}
+
+
